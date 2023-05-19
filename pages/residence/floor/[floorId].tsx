@@ -1,8 +1,13 @@
-import React from 'react'
+import Floor from '@/components/floor'
+import { useRouter } from 'next/router'
 
 const SingeFloor = () => {
+  const { query } = useRouter();
+  const floorNum = query.floorId as string
+
+
   return (
-    <div>SingeFloor</div>
+    <Floor floorNum={floorNum} />
   )
 }
 

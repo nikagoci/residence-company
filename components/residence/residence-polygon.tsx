@@ -1,5 +1,5 @@
 import { useState } from "react";
-import SinglePolygon from "./single-polygon";
+import SingleResidencePolygon from "./single-residence-polygon";
 
 const POLYGONS = [
   {
@@ -25,7 +25,7 @@ const POLYGONS = [
 ];
 
 
-const ImageMap = () => {
+const ResidencePolygon = () => {
   const [hoveredPolygon, setHoveredPolygon] = useState<string | null>(null);
 
   const handlePolygonHover = (polygonId: string) => {
@@ -40,7 +40,7 @@ const ImageMap = () => {
     <svg width="80%" height="100%" viewBox="0 0 1120 639">
          <image href="images/residence.jpg" />
       {POLYGONS.map((polygon) => (
-        <SinglePolygon
+        <SingleResidencePolygon
           handlePolygonHover={handlePolygonHover}
           handlePolygonLeave={handlePolygonLeave}
           hoveredPolygon={hoveredPolygon}
@@ -53,4 +53,4 @@ const ImageMap = () => {
   );
 };
 
-export default ImageMap;
+export default ResidencePolygon;

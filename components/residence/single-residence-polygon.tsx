@@ -8,7 +8,7 @@ type Props = {
   id: string;
 };
 
-const SinglePolygon = ({
+const SingleResidencePolygon = ({
   hoveredPolygon,
   handlePolygonHover,
   handlePolygonLeave,
@@ -31,4 +31,4 @@ const SinglePolygon = ({
   );
 };
 
-export default SinglePolygon
+export default SingleResidencePolygon
