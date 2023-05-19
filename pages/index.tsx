@@ -1,7 +1,8 @@
+
 export default function Home() {
   return (
-   <>
-   <h1>red</h1>
-   </>
+   <h1>
+    red
+   </h1>
   )
 }
