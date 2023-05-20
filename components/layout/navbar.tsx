@@ -15,11 +15,11 @@ const Navbar = () => {
                 <div className="flex items-center flex-shrink-0">
                   <Link href="/">
                     <Image
-                      className="block w-auto h-12 rounded-full"
+                      className="block w-auto h-10 rounded-full"
                       src="/images/logo.jpg"
-                      alt="Turcvs"
-                      width={48}
-                      height={48}
+                      alt="Turcvg"
+                      width={40}
+                      height={40}
                     />
                   </Link>
                 </div>
