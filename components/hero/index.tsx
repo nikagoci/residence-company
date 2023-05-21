@@ -1,11 +1,10 @@
 import Image from "next/image";
-import React from "react";
 
 const Hero = () => {
   return (
     <div className="text-white bg-cadet_blue">
       <div className="py-24 ">
-        <div className="container flex flex-col flex-wrap items-center px-3 mx-auto md:flex-row">
+        <div className="flex flex-col flex-wrap items-center px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 md:flex-row">
           <div className="flex flex-col items-start justify-center w-full text-center md:w-2/5 md:text-left">
             <p className="w-full uppercase tracking-loose">
               Are You Going To Buy House?
