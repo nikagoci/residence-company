@@ -37,8 +37,8 @@ const ResidencePolygon = () => {
   };
 
   return (
-    <svg width="80%" height="100%" viewBox="0 0 1120 639">
-         <image href="images/residence.jpg" />
+    <svg width="60%" height="100%" viewBox="0 0 1120 639">
+         <image href="images/residence.jpg"  />
       {POLYGONS.map((polygon) => (
         <SingleResidencePolygon
           handlePolygonHover={handlePolygonHover}
