@@ -1,11 +1,11 @@
 import Image from "next/image"
 
-const Gallery = () => {
+const ResidenceDescription = () => {
   return (
     <section className="py-8 bg-white border-b">
       <div className="container max-w-5xl m-8 mx-auto">
         <h2 className="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">
-          Gallery
+          Residence Descriprition
         </h2>
         <div className="w-full mb-4">
           <div className="w-64 h-1 py-0 mx-auto my-0 rounded-t opacity-25 gradient"></div>
@@ -44,4 +44,4 @@ const Gallery = () => {
   )
 }
 
-export default Gallery
+export default ResidenceDescription
