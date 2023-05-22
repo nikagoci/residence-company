@@ -1,5 +1,6 @@
 import { useState } from "react";
 import SingleResidencePolygon from "./single-residence-polygon";
+import Image from "next/image";
 
 const POLYGONS = [
   {
@@ -24,7 +25,6 @@ const POLYGONS = [
   },
 ];
 
-
 const ResidencePolygon = () => {
   const [hoveredPolygon, setHoveredPolygon] = useState<string | null>(null);
 
@@ -37,19 +37,49 @@ const ResidencePolygon = () => {
   };
 
   return (
-    <svg width="60%" height="100%" viewBox="0 0 1120 639">
-         <image href="images/residence.jpg"  />
-      {POLYGONS.map((polygon) => (
-        <SingleResidencePolygon
-          handlePolygonHover={handlePolygonHover}
-          handlePolygonLeave={handlePolygonLeave}
-          hoveredPolygon={hoveredPolygon}
-          points={polygon.points}
-          id={polygon.id}
-          key={polygon.id}
-        />
-      ))}
-    </svg>
+    <div className="relative flex justify-center w-full h-full">
+      <Image
+        src="/images/residence.jpg"
+        alt="residence"
+        className="top-0 left-0 rounded-2xl w-[100%] lg:w-[80%] h-full"
+        width={1220}
+        height={820}
+      />
+      {/* <div className="absolute top-0 left-0 w-full h-full">
+
+        <div className="bg-primary rotate-6 rounded-xl  flex items-center justify-center text-white z-20 absolute top-[180px] right-[80px] py-2 px-8">
+          Floor 5
+        </div>
+        <div className="bg-primary rotate-6 rounded-xl  flex items-center justify-center text-white z-20 absolute top-[230px] right-[80px] py-2 px-8">
+          Floor 4
+        </div>
+        <div className="bg-primary rotate-6 rounded-xl  flex items-center justify-center text-white z-20 absolute top-[280px] right-[80px] py-2 px-8">
+          Floor 3
+        </div>
+        <div className="bg-primary rotate-6 rounded-xl  flex items-center justify-center text-white z-20 absolute top-[330px] right-[80px] py-2 px-8">
+          Floor 2
+        </div>
+        <div className="bg-primary rotate-6 rounded-xl  flex items-center justify-center text-white z-20 absolute top-[380px] right-[80px] py-2 px-8">
+          Floor 1
+        </div>
+      </div> */}
+
+      <svg
+        className="absolute top-0 left-0 w-full h-full"
+        viewBox="0 0 1227 836  "
+      >
+        {POLYGONS.map((polygon) => (
+          <SingleResidencePolygon
+            handlePolygonHover={handlePolygonHover}
+            handlePolygonLeave={handlePolygonLeave}
+            hoveredPolygon={hoveredPolygon}
+            points={polygon.points}
+            id={polygon.id}
+            key={polygon.id}
+          />
+        ))}
+      </svg>
+    </div>
   );
 };
 

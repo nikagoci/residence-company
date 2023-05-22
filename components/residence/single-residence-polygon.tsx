@@ -16,19 +16,19 @@ const SingleResidencePolygon = ({
   id,
 }: Props) => {
   return (
-    <Link href={`residence/floor/${id}`}>
-        <polygon
+    <Link href={`residence/floor/${id}`} className="relative">
+      <polygon
         points={points}
         className={`${
-            hoveredPolygon === id
+          hoveredPolygon === id
             ? "opacity-30   fill-light_blue stroke-blue stroke-[3px] cursor-pointer"
             : "opacity-0"
         }`}
         onMouseEnter={() => handlePolygonHover(id)}
         onMouseLeave={handlePolygonLeave}
-        />
+      />
     </Link>
   );
 };
 
-export default SingleResidencePolygon
+export default SingleResidencePolygon;

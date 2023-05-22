@@ -49,32 +49,29 @@ const Material = () => {
 
   }
 
-  const handleButtonDisable = (e: SwiperType) => {
-    if(e.currentBreakpoint === '0'){
-      if(e.realIndex === 0) {
+  const handleButtonDisable = (swiper: SwiperType) => {
+    if(swiper.currentBreakpoint === '0'){
+      if(swiper.realIndex === 0) {
         setDisableButton('first')
-      } else if(e.realIndex === 3) {
+      } else if(swiper.realIndex === 3) {
         setDisableButton('second')
       } else {
         setDisableButton('')
       }
     } else {
-      if(e.realIndex === 0) {
+      if(swiper.realIndex === 0) {
         setDisableButton('first')
-      } else if(e.realIndex === 2) {
+      } else if(swiper.realIndex === 2) {
         setDisableButton('second')
       } else {
         setDisableButton('')
       }
     }
-   
-
-    console.log(e)
   }
 
   
   return (
-    <section className="py-24">
+    <section className="py-16">
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div className="flex flex-col">
           <div className="mb-8 space-y-6 basis-1/3">
