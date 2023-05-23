@@ -2,7 +2,7 @@ import Image from "next/image"
 
 const ResidenceDescription = () => {
   return (
-    <section className="py-8 bg-white border-b">
+    <section className="py-8 bg-white border-b" id='description'>
       <div className="container max-w-5xl m-8 mx-auto">
         <h2 className="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">
           Residence Descriprition

@@ -28,6 +28,8 @@ const POLYGONS = [
 const ResidencePolygon = () => {
   const [hoveredPolygon, setHoveredPolygon] = useState<string | null>(null);
 
+
+  console.log(hoveredPolygon)
   const handlePolygonHover = (polygonId: string) => {
     setHoveredPolygon(polygonId);
   };
@@ -38,31 +40,22 @@ const ResidencePolygon = () => {
 
   return (
     <div className="relative flex justify-center w-full h-full">
-      <Image
-        src="/images/residence.jpg"
-        alt="residence"
-        className="top-0 left-0 rounded-2xl w-[100%] lg:w-[80%] h-full"
-        width={1220}
-        height={820}
-      />
-      {/* <div className="absolute top-0 left-0 w-full h-full">
-
-        <div className="bg-primary rotate-6 rounded-xl  flex items-center justify-center text-white z-20 absolute top-[180px] right-[80px] py-2 px-8">
-          Floor 5
+      <div className="relative w-[100%] lg:w-[80%] h-full">
+        <Image
+          src="/images/residence.jpg"
+          alt="residence"
+          className="w-full h-full rounded-2xl"
+          width={1220}
+          height={820}
+        />
+        {hoveredPolygon && (
+          <div className="absolute px-6 py-2 text-xs font-bold text-white sm:text-sm bg-blue top-4 right-4 rounded-xl ">
+          <h3>{hoveredPolygon} Floor</h3>
+          <h3>Left: 16 flat</h3>
         </div>
-        <div className="bg-primary rotate-6 rounded-xl  flex items-center justify-center text-white z-20 absolute top-[230px] right-[80px] py-2 px-8">
-          Floor 4
-        </div>
-        <div className="bg-primary rotate-6 rounded-xl  flex items-center justify-center text-white z-20 absolute top-[280px] right-[80px] py-2 px-8">
-          Floor 3
-        </div>
-        <div className="bg-primary rotate-6 rounded-xl  flex items-center justify-center text-white z-20 absolute top-[330px] right-[80px] py-2 px-8">
-          Floor 2
-        </div>
-        <div className="bg-primary rotate-6 rounded-xl  flex items-center justify-center text-white z-20 absolute top-[380px] right-[80px] py-2 px-8">
-          Floor 1
-        </div>
-      </div> */}
+        )}
+        
+      </div>
 
       <svg
         className="absolute top-0 left-0 w-full h-full"
