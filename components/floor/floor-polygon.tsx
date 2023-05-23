@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
+import Image from "next/image";
+import { ArrowRightIcon, ArrowLeftIcon } from "@heroicons/react/outline";
+
 import SingleFloorPolygon from "./single-floor-polygon";
 import FLATS from "@/fakeData";
-import Image from "next/image";
-
+import { useRouter } from "next/router";
+import Link from "next/link";
 // const POLYGONS = [
 //   {
 //     id: "1",
@@ -47,7 +50,44 @@ type Props = {
 const ResidencePolygon = ({ floorNum }: Props) => {
   const [hoveredPolygon, setHoveredPolygon] = useState<number | null>(null);
   const [flatInfo, setFlatInfo] = useState<Flat[]>([]);
-  const [totalArea, setTotalArea] = useState(0)
+  const [totalArea, setTotalArea] = useState(0);
+  const [disableButton, setDisableButton] = useState('')
+
+  const router= useRouter()
+
+  useEffect(() => {
+    if (floorNum) {
+      const flats = FLATS.filter((flat) => flat.floor === +floorNum);
+
+      setFlatInfo(flats);
+    }
+
+    if(floorNum && +floorNum === 1) {
+      setDisableButton('first')
+    } else if(floorNum && +floorNum === 5) {
+      setDisableButton('second')
+    } else {
+      setDisableButton('')
+    }
+
+
+  }, [floorNum]);
+
+  useEffect(() => {
+    if (hoveredPolygon) {
+      const flat = flatInfo.find(
+        (flat) => flat.flatNum === hoveredPolygon
+      ) as Flat;
+
+      let balconyArea = 0;
+
+      flat?.balconies.forEach((balcony) => {
+        balconyArea += balcony;
+      });
+
+      setTotalArea(balconyArea + flat?.livingArea);
+    }
+  }, [hoveredPolygon]);
 
   const handlePolygonHover = (polygonId: number) => {
     setHoveredPolygon(polygonId);
@@ -56,29 +96,6 @@ const ResidencePolygon = ({ floorNum }: Props) => {
   const handlePolygonLeave = () => {
     setHoveredPolygon(null);
   };
-
-  useEffect(() => {
-    if (floorNum) {
-      const flats = FLATS.filter((flat) => flat.floor === +floorNum);
-
-      setFlatInfo(flats);
-    }
-  }, [floorNum]);
-
-  useEffect(() => {
-    if(hoveredPolygon) {
-      const flat = flatInfo.find(flat => flat.flatNum === hoveredPolygon) as Flat
-
-      let balconyArea = 0;
-
-      flat?.balconies.forEach((balcony) => {
-        balconyArea += balcony 
-      })
-
-      setTotalArea(balconyArea + flat?.livingArea)
-      
-    }
-  }, [hoveredPolygon])
 
   return (
     <div className="relative flex justify-center w-full h-full">
@@ -92,13 +109,37 @@ const ResidencePolygon = ({ floorNum }: Props) => {
         />
         {hoveredPolygon && (
           <div className="absolute right-0 px-6 py-2 text-xs font-bold text-white lg:top-14 xl:top-24 top-4 sm:text-sm bg-blue rounded-xl ">
-          <h3>Flat: {hoveredPolygon}</h3>
-          <h3>Area: {totalArea.toFixed(1)} sq.m</h3>
-        </div>
+            <h3>Flat: {hoveredPolygon}</h3>
+            <h3>Area: {totalArea.toFixed(1)} sq.m</h3>
+          </div>
         )}
+        <div className="absolute top-0 left-0 z-10 flex flex-col items-center justify-center w-full gap-y-6">
+            <h3 className="text-3xl font-bold text-primary">Floor {floorNum}</h3>
+            <div className="flex gap-x-4">
+              <Link
+                href={`/residence/floor/${+floorNum - 1}`}
+                className={`${disableButton === 'first' ? 'bg-light_blue pointer-events-none' : 'bg-blue active:scale-110'} p-4 text-white transition duration-300 rounded-full `}
+                // onClick={handleFloorDecrease}
+                // disabled={disableButton === 'first'}
+              >
+                <ArrowLeftIcon className="w-4" />
+              </Link>
+              <Link
+                href={`/residence/floor/${+floorNum + 1}`}
+                className={`${disableButton === 'second' ? 'bg-light_blue pointer-events-none' : 'bg-blue active:scale-110'} p-4 text-white transition duration-300 rounded-full `}
+                // onClick={handleFloorIncrease}
+                // disabled={disableButton === 'second'}
+              >
+                <ArrowRightIcon className="w-4" />
+              </Link>
+            </div>
+        </div>
       </div>
-      
-      <svg className="absolute top-0 left-0 w-full h-full" viewBox="0 0 1227 836">
+
+      <svg
+        className="absolute top-0 left-0 w-full h-full"
+        viewBox="0 0 1227 836"
+      >
         {flatInfo.map((flat) => (
           <SingleFloorPolygon
             handlePolygonHover={handlePolygonHover}
