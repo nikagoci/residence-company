@@ -82,7 +82,7 @@ const ResidencePolygon = ({ floorNum }: Props) => {
 
   return (
     <div className="relative flex justify-center w-full h-full">
-      <div className="relative w-[100%] lg:w-[80%] h-full ">
+      <div className="relative w-[100%] lg:w-[70%] h-full ">
         <Image
           src="/images/floor.jpg"
           alt="residence"
@@ -90,13 +90,14 @@ const ResidencePolygon = ({ floorNum }: Props) => {
           width={1220}
           height={820}
         />
-      </div>
-      {hoveredPolygon && (
-          <div className="absolute px-6 py-2 text-xs font-bold text-white sm:text-sm bg-blue top-4 right-4 rounded-xl ">
+        {hoveredPolygon && (
+          <div className="absolute right-0 px-6 py-2 text-xs font-bold text-white lg:top-14 xl:top-24 top-4 sm:text-sm bg-blue rounded-xl ">
           <h3>Flat: {hoveredPolygon}</h3>
           <h3>Area: {totalArea.toFixed(1)} sq.m</h3>
         </div>
         )}
+      </div>
+      
       <svg className="absolute top-0 left-0 w-full h-full" viewBox="0 0 1227 836">
         {flatInfo.map((flat) => (
           <SingleFloorPolygon

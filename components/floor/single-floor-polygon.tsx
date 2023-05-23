@@ -1,5 +1,6 @@
 import { Condition } from "@/fakeData";
-import Link from "next/link";
+import Modal from "../shared/modal";
+import { useState } from "react";
 
 type Props = {
   hoveredPolygon: number | null;
@@ -14,15 +15,18 @@ const SingleFloorPolygon = ({
   handlePolygonLeave,
   flat,
 }: Props) => {
+  const [openModal, setOpenModal] = useState(false)
+
+
+  const handleModalOpen = () => {
+    if(flat.condition !== Condition.sold) {
+      setOpenModal(true)
+    }
+  }
+
   return (
-    <Link
-      href={`${
-        flat.condition !== Condition.sold
-          ? "/"
-          : `/residence/floor/${flat.floor}`
-      }`}
-      className="relative"
-    >
+    <>
+    <Modal flat={flat} openModal={openModal} setOpenModal={setOpenModal} />
         <polygon
           points={flat.points}
           className={`${
@@ -38,8 +42,10 @@ const SingleFloorPolygon = ({
         `}
           onMouseEnter={() => handlePolygonHover(flat.flatNum)}
           onMouseLeave={handlePolygonLeave}
+          onClick={handleModalOpen}
         />
-    </Link>
+    </>
+
   );
 };
 

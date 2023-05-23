@@ -1,7 +1,6 @@
 export enum Condition {
     sale = "sale",
     sold = "sold",
-    outgoing = "outgoing"
 }
 
 const FLATS: Flat[] = [
@@ -35,7 +34,7 @@ const FLATS: Flat[] = [
         bedrooms: [14.6],
         wetPoints: [5.5],
         price: 60000,
-        condition: Condition.outgoing,
+        condition: Condition.sale,
         points: "361,194,608,192,607,427,361,428",
     },
     {
@@ -57,7 +56,7 @@ const FLATS: Flat[] = [
         bedrooms: [14, 14.9, 16.4],
         wetPoints: [6.2, 4.4],
         price: 70000,
-        condition: Condition.outgoing,
+        condition: Condition.sale,
         points: "866,191,1214,192,1214,448,1106,450,1103,407,1106,492,1046,490,1047,411,993,409,994,428,869,428,869,427",
     },
     {
@@ -156,7 +155,7 @@ const FLATS: Flat[] = [
         bedrooms: [16.3, 13],
         wetPoints: [5.6],
         price: 42000,
-        condition: Condition.outgoing,
+        condition: Condition.sale,
         points: "1213,448,1211,721,948,721,948,429,994,427,993,410,1043,408,1049,488,1101,492,1102,450",
     },
     {
@@ -211,7 +210,7 @@ const FLATS: Flat[] = [
         bedrooms: [14.6, 23.1],
         wetPoints: [5.5, 3.2],
         price: 47000,
-        condition: Condition.outgoing,
+        condition: Condition.sale,
         points: "361,194,608,192,607,427,361,428",
     },
     {
@@ -266,7 +265,7 @@ const FLATS: Flat[] = [
         bedrooms: [19.3],
         wetPoints: [5.2],
         price: 43000,
-        condition: Condition.outgoing,
+        condition: Condition.sale,
         points: "614,476,800,476,798,551,861,551,861,655,786,656,784,717,613,722",
     },
     {
@@ -299,7 +298,7 @@ const FLATS: Flat[] = [
         bedrooms: [14.6, 23.1],
         wetPoints: [5.5, 3.2],
         price: 47000,
-        condition: Condition.outgoing,
+        condition: Condition.sale,
         points: "361,194,608,192,607,427,361,428",
     },
     {
@@ -321,7 +320,7 @@ const FLATS: Flat[] = [
         bedrooms: [13, 10, 10.9, 12.4],
         wetPoints: [4.2, 2.1, 4.4],
         price: 47000,
-        condition: Condition.outgoing,
+        condition: Condition.sale,
         points: "866,191,1214,192,1214,448,1106,450,1103,407,1106,492,1046,490,1047,411,993,409,994,428,869,428,869,427",
     },
     {
@@ -387,7 +386,7 @@ const FLATS: Flat[] = [
         bedrooms: [14.6, 23.1],
         wetPoints: [5.5, 3.2],
         price: 47000,
-        condition: Condition.outgoing,
+        condition: Condition.sale,
         points: "361,194,608,192,607,427,361,428",
     },
     {
@@ -409,7 +408,7 @@ const FLATS: Flat[] = [
         bedrooms: [13, 10, 10.9, 12.4],
         wetPoints: [4.2, 2.1, 4.4],
         price: 47000,
-        condition: Condition.outgoing,
+        condition: Condition.sale,
         points: "866,191,1214,192,1214,448,1106,450,1103,407,1106,492,1046,490,1047,411,993,409,994,428,869,428,869,427",
     },
     {
