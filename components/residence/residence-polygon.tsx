@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SingleResidencePolygon from "./single-residence-polygon";
 import Image from "next/image";
 
@@ -28,8 +28,6 @@ const POLYGONS = [
 const ResidencePolygon = () => {
   const [hoveredPolygon, setHoveredPolygon] = useState<string | null>(null);
 
-
-  console.log(hoveredPolygon)
   const handlePolygonHover = (polygonId: string) => {
     setHoveredPolygon(polygonId);
   };
@@ -50,16 +48,14 @@ const ResidencePolygon = () => {
         />
         {hoveredPolygon && (
           <div className="absolute px-6 py-2 text-xs font-bold text-white sm:text-sm bg-blue top-4 right-4 rounded-xl ">
-          <h3>{hoveredPolygon} Floor</h3>
-          <h3>Left: 16 flat</h3>
-        </div>
+            <h3>{hoveredPolygon} Floor</h3>
+            <h3>Left: X Flat</h3>
+          </div>
         )}
-        
       </div>
-
       <svg
         className="absolute top-0 left-0 w-full h-full"
-        viewBox="0 0 1227 836  "
+        viewBox="0 0 1227 836"
       >
         {POLYGONS.map((polygon) => (
           <SingleResidencePolygon
