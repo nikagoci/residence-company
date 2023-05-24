@@ -1,0 +1,41 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+// type Flat = {
+//     flatNum: number;
+//     floor: number;
+//     livingArea: number;
+//     balconies: number[];
+//     bedrooms: number[];
+//     wetPoints: number[];
+//     price: number;
+//     condition: Condition;
+//     points: string;
+// }
+
+enum Condition {
+    sale
+    sold
+}
+
+
+model Flat {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  flatNum Int @unique
+  floor Int 
+  livingArea Float
+  balconies Float[]
+  bedrooms Float[]
+  wetPoints Float[]
+  price Int
+  condition Condition
+  points String
+}
