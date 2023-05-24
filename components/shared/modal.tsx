@@ -108,6 +108,12 @@ const Modal = ({ openModal, setOpenModal, flat }: Props) => {
                   </h4>
                   <h5>{totalBalconyArea} sq.m</h5>
                 </div>
+                <div className="flex gap-x-8 ">
+                  <h4>
+                    Price
+                  </h4>
+                  <h5 >{flat.price} $</h5>
+                </div>
                 <div className="grid grid-cols-2 gap-4 mt-4 font-normal">
                   {flat.bedrooms.map((bedroom, idx) => (
                     <div key={idx}>

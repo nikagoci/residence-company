@@ -44,7 +44,7 @@ const typeDefs = gql`
     }
 
     type Query {
-        Flats: [Flat]
+        Flats(floor: Int): [Flat]
         LeftFlats: [FlatForSale]
     }
 
@@ -66,7 +66,9 @@ const typeDefs = gql`
 const resolvers = {
   Query: {
     Flats: (_parent: any, _args: any, _context: {}) => {
-      return prisma.flat.findMany();
+      const {floor} = _args;
+
+      return prisma.flat.findMany( { where: { floor } });
     },
     LeftFlats: (_parent: any, _args: any, _context: {}) => {
       return prisma.flat.groupBy({

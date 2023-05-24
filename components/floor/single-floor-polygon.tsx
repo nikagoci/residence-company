@@ -15,37 +15,35 @@ const SingleFloorPolygon = ({
   handlePolygonLeave,
   flat,
 }: Props) => {
-  const [openModal, setOpenModal] = useState(false)
-
+  const [openModal, setOpenModal] = useState(false);
 
   const handleModalOpen = () => {
-    if(flat.condition !== Condition.sold) {
-      setOpenModal(true)
+    if (flat.condition !== Condition.sold) {
+      setOpenModal(true);
     }
-  }
+  };
 
   return (
     <>
-    <Modal flat={flat} openModal={openModal} setOpenModal={setOpenModal} />
-        <polygon
-          points={flat.points}
-          className={`${
-            hoveredPolygon === flat.flatNum && flat.condition !== Condition.sold
-              ? "opacity-30   fill-blue stroke-[3px] cursor-pointer"
-              : "opacity-0 "
-          }
+      <Modal flat={flat} openModal={openModal} setOpenModal={setOpenModal} />
+      <polygon
+        points={flat.points}
+        className={`${
+          hoveredPolygon === flat.flatNum && flat.condition !== Condition.sold
+            ? "opacity-30   fill-blue stroke-[3px] cursor-pointer"
+            : "opacity-0 "
+        }
         ${
           flat.condition === Condition.sold
             ? "opacity-50 cursor-default"
             : "opacity-0"
         }
         `}
-          onMouseEnter={() => handlePolygonHover(flat.flatNum)}
-          onMouseLeave={handlePolygonLeave}
-          onClick={handleModalOpen}
-        />
+        onMouseEnter={() => handlePolygonHover(flat.flatNum)}
+        onMouseLeave={handlePolygonLeave}
+        onClick={handleModalOpen}
+      />
     </>
-
   );
 };
 
