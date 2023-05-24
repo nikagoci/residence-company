@@ -1,3 +1,4 @@
+import { Condition } from "@/fakeData";
 import prisma from "@/libs/prisma";
 import { gql, ApolloServer } from "apollo-server-micro";
 
@@ -32,8 +33,19 @@ const typeDefs = gql`
         sold
     }
 
+    type Count {
+      _all: Int
+    }
+
+
+    type FlatForSale {
+      _count: Count
+      floor: Int
+    }
+
     type Query {
         Flats: [Flat]
+        LeftFlats: [FlatForSale]
     }
 
     type Mutation {
@@ -56,6 +68,20 @@ const resolvers = {
     Flats: (_parent: any, _args: any, _context: {}) => {
       return prisma.flat.findMany();
     },
+    LeftFlats: (_parent: any, _args: any, _context: {}) => {
+      return prisma.flat.groupBy({
+        by: ['floor'],
+        where: {
+          condition: Condition.sale
+        },
+        _count: {
+          _all: true
+        },
+        orderBy: {
+          floor: 'asc'
+        }
+      })
+    }
   },
   Mutation: {
     addFlat: (_parent: any, _args: any, _context: {}) => {
