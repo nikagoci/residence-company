@@ -1,29 +1,46 @@
 import { gql } from "@apollo/client";
 
-export const GET_LEFT_FLATS = gql`
-  query {
-    LeftFlats {
-      floor
-      _count {
-        _all
+export const GET_FLATS_INFO = gql`
+  query ($priceFrom: Int, $priceTo: Int, $areaFrom: Int, $areaTo: Int) {
+    FlatsInfo(
+      priceFrom: $priceFrom
+      priceTo: $priceTo
+      areaTo: $areaTo
+      areaFrom: $areaFrom
+    ) {
+      flats {
+        flatNum
+        floor
+        livingArea
+        balconies
+        bedrooms
+        price
+        condition
+        id
+      }
+      leftFlats {
+        _count {
+          _all
+        }
+        floor
       }
     }
   }
 `;
 
 export const GET_ALL_FLATS = gql`
-  query getAllFlats($floor: Int){
+  query getAllFlats($floor: Int) {
     Flats(floor: $floor) {
       flatNum
-        floor
-        livingArea
-        balconies
-        bedrooms
-        wetPoints
-        price
-        condition
-        points
-    		id
+      floor
+      livingArea
+      balconies
+      bedrooms
+      wetPoints
+      price
+      condition
+      points
+      id
     }
   }
-`
+`;

@@ -1,14 +1,34 @@
+import { useQuery } from "@apollo/client";
 import Filter from "./filter";
 import ResidencePolygon from "./residence-polygon";
+import { GET_FLATS_INFO } from "@/libs/graphql/queries";
+
+type FlatInfo = {
+  FlatsInfo: {
+    leftFlats: {
+      floor: number;
+      _count: { _all: number };
+    }[],
+    flats: Flat[]
+  }
+};
 
 const Residence = () => {
+  const { data, loading, error } = useQuery<FlatInfo>(GET_FLATS_INFO, {
+    variables: { priceFrom: 200, priceTo: 42000, areaFrom: 0, areaTo: 200 }
+  });
+
+  if(error){
+    return <h1>error</h1>
+  }
+
   return (
     <section className="pt-16 pb-4">
       <div className="flex flex-col items-center px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <h1 className="text-3xl font-[400] text-black">Choose Your House</h1>
-        <Filter />
+        <Filter flats={data?.FlatsInfo.flats} loading={loading} />
         <div className="relative flex justify-center w-full h-full mt-10">
-          <ResidencePolygon />
+          <ResidencePolygon loading={loading} leftFlatInfo={data?.FlatsInfo.leftFlats} />
         </div>
         <p className="w-[100%] text-xl md:w-[60%] md:text-sm mt-7 text-[#797984]">
           Rivertown A new premium class complex TURCVG is an exquisitely

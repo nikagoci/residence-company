@@ -1,9 +1,7 @@
 import { useState } from "react";
 import Image from "next/image";
-import { useQuery } from "@apollo/client";
 
 import SingleResidencePolygon from "./single-residence-polygon";
-import { GET_LEFT_FLATS } from "@/libs/graphql/queries";
 
 const POLYGONS = [
   {
@@ -28,17 +26,17 @@ const POLYGONS = [
   },
 ];
 
-type LeftFlats = {
-  LeftFlats: {
+type Props = {
+  leftFlatInfo: {
     floor: number;
     _count: { _all: number };
-  }[];
+  }[] | undefined;
+  loading: boolean
 };
 
-const ResidencePolygon = () => {
+const ResidencePolygon = ({ leftFlatInfo, loading } : Props) => {
   const [hoveredPolygon, setHoveredPolygon] = useState<string | null>(null);
   const [leftFlats, setLeftFlats] = useState<null | number>(null);
-  const { data, loading, error } = useQuery<LeftFlats>(GET_LEFT_FLATS);
 
   if (loading) {
     return (
@@ -54,15 +52,12 @@ const ResidencePolygon = () => {
     );
   }
 
-  if (error) {
-    return <h1>error</h1>;
-  }
 
   const handlePolygonHover = (polygonId: string) => {
     setHoveredPolygon(polygonId);
 
-    if (data) {
-      const hoveredFloor = data.LeftFlats.find(
+    if (leftFlatInfo) {
+      const hoveredFloor = leftFlatInfo.find(
         (flat) => flat.floor === +polygonId
       ) as { floor: number; _count: { _all: number } };
       setLeftFlats(hoveredFloor._count._all);
