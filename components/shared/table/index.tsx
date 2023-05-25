@@ -99,7 +99,7 @@ const Table = ({ flats, loading }: Props) => {
             <Popover.Panel className="absolute inset-x-0 z-10 mt-2 transform shadow-lg ">
               <div className="flex flex-col justify-around pt-5 overflow-x-auto border-t border-gray-200 gap-y-6 sm:gap-8">
                 <table className="w-full mb-0 overflow-visible bg-white rounded-2xl">
-                  <div className="h-96">
+                  <div className="bg-white h-96">
                     <thead className="z-50 border-b ">
                       <TopRow />
                     </thead>

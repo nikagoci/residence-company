@@ -2,6 +2,8 @@ import { useQuery } from "@apollo/client";
 import Filter from "./filter";
 import ResidencePolygon from "./residence-polygon";
 import { GET_FLATS_INFO } from "@/libs/graphql/queries";
+import { useContext } from "react";
+import { FilterContext } from "@/context/filterContext";
 
 type FlatInfo = {
   FlatsInfo: {
@@ -14,8 +16,10 @@ type FlatInfo = {
 };
 
 const Residence = () => {
+  const { areaFrom, areaTo, priceFrom, priceTo } = useContext(FilterContext)
+
   const { data, loading, error } = useQuery<FlatInfo>(GET_FLATS_INFO, {
-    variables: { priceFrom: 200, priceTo: 42000, areaFrom: 0, areaTo: 200 }
+    variables: { areaFrom, areaTo, priceFrom, priceTo },
   });
 
   if(error){
