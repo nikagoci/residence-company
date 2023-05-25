@@ -44,3 +44,19 @@ export const GET_ALL_FLATS = gql`
     }
   }
 `;
+
+export const GET_SINGLE_FLAT = gql`
+  query getSingleFlat($flatNum: Int) {
+    Flat(flatNum: $flatNum) {
+      flatNum
+      floor
+      livingArea
+      balconies
+      bedrooms
+      wetPoints
+      price
+      condition
+      id
+    }
+  }
+`;

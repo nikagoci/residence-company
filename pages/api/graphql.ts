@@ -55,6 +55,7 @@ const typeDefs = gql`
       areaFrom: Int
       areaTo: Int
     ): FlatsWithLeftFlats
+    Flat(flatNum: Int): Flat
   }
 
   type Mutation {
@@ -107,6 +108,11 @@ const resolvers = {
 
       return { leftFlats, flats };
     },
+    Flat: (_parent: Flat, _args: { flatNum: number }, _context: {}) => {
+      const {flatNum} = _args;
+
+      return prisma.flat.findUnique({ where: {flatNum} })
+    }
   },
   Mutation: {
     addFlat: (_parent: Flat, _args: AddFlatArgs, _context: {}) => {

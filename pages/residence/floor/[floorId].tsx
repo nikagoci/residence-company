@@ -9,10 +9,6 @@ const SingeFloor = () => {
   useEffect(() => {
     if(floorNum && +floorNum <= 0 || +floorNum > 5){
       push('/residence')
-      console.log('tru')
-    }
-    if(floorNum) {
-      console.log(+floorNum)
     }
   }, [floorNum])
 
