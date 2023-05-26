@@ -1,10 +1,12 @@
-import React from 'react'
+type Props = {
+  loading: boolean
+}
 
-const SearchButton = () => {
+const SearchButton = ({loading}: Props) => {
   return (
     <button
           type="submit"
-          className="flex items-center px-4 py-2 text-sm text-white transition duration-300 border-none lg:px-4 md:px-2 active:scale-110 rounded-xl hover:bg-primary gap-x-2 bg-primary bg-orange_to_red "
+          className={`${loading && 'loading'} flex items-center px-4 py-2 text-sm text-white transition duration-300 border-none  btn lg:px-4 md:px-2 active:scale-110 rounded-xl hover:bg-primary gap-x-2 bg-primary bg-orange_to_red`}
         >
           <h4>Search</h4>
           <svg

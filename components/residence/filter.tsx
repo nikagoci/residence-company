@@ -105,7 +105,7 @@ const Filter = ({ flats, loading }: Props) => {
           />
         </div>
       </div>
-      <SearchButton />
+      <SearchButton loading={loading} />
       <div className="w-full py-4 md:w-fit ">
         <Table flats={flats} loading={loading} />
       </div>
