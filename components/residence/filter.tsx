@@ -72,7 +72,7 @@ const Filter = ({ flats, loading }: Props) => {
             changeHandler={changeHandler}
           />
           <Image
-            src="/images/connect.svg"
+            src="/svgs/connect.svg"
             alt="connect"
             width={20}
             height={20}
@@ -93,7 +93,7 @@ const Filter = ({ flats, loading }: Props) => {
             changeHandler={changeHandler}
           />
           <Image
-            src="/images/connect.svg"
+            src="/svgs/connect.svg"
             alt="connect"
             width={20}
             height={20}
