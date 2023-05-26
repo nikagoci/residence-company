@@ -1,10 +1,11 @@
+import Dashboard from "@/components/dashboard.tsx";
 import prisma from "@/libs/prisma";
 import { GetServerSideProps } from "next";
 import { useSession, signOut, getSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
-const Dashboard = () => {
+const DashboardPage = () => {
   const { status } = useSession();
   const { push } = useRouter();
 
@@ -20,7 +21,7 @@ const Dashboard = () => {
     push("/api/auth/signin");
   }
 
-  return <div>Dashboard</div>;
+  return <Dashboard />;
 };
 
-export default Dashboard;
+export default DashboardPage;
