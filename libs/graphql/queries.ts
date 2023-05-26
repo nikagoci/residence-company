@@ -60,3 +60,19 @@ export const GET_SINGLE_FLAT = gql`
     }
   }
 `;
+
+export const FLAT_STATISTIC = gql`
+  query {
+    FlatStatistic {
+      flatsSold
+      totalIncome
+      demandableFloor
+      soldFlatsByFloor {
+        floor
+        _count {
+          _all
+        }
+      }
+    }
+  }
+`;

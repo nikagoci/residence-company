@@ -3,16 +3,16 @@ import prisma from "@/libs/prisma";
 import { gql, ApolloServer } from "apollo-server-micro";
 
 type AddFlatArgs = {
-        flatNum: number,
-        floor: number,
-        livingArea: number,
-        balconies: number[],
-        bedrooms:number[],
-        wetPoints: number[],
-        price: number,
-        condition: Condition,
-        points: string,
-}
+  flatNum: number;
+  floor: number;
+  livingArea: number;
+  balconies: number[];
+  bedrooms: number[];
+  wetPoints: number[];
+  price: number;
+  condition: Condition;
+  points: string;
+};
 
 const typeDefs = gql`
   type Flat {
@@ -47,6 +47,13 @@ const typeDefs = gql`
     flats: [Flat]
   }
 
+  type Statistic {
+    flatsSold: Int
+    totalIncome: Int
+    demandableFloor: Int
+    soldFlatsByFloor: [FlatForSale]
+  }
+
   type Query {
     Flats(floor: Int): [Flat]
     FlatsInfo(
@@ -56,6 +63,7 @@ const typeDefs = gql`
       areaTo: Int
     ): FlatsWithLeftFlats
     Flat(flatNum: Int): Flat
+    FlatStatistic: Statistic
   }
 `;
 
@@ -66,7 +74,17 @@ const resolvers = {
 
       return prisma.flat.findMany({ where: { floor } });
     },
-    FlatsInfo: async (_parent: Flat, _args: {priceFrom: number, priceTo: number, areaFrom: number, areaTo: number}, _context: {}) => {
+
+    FlatsInfo: async (
+      _parent: Flat,
+      _args: {
+        priceFrom: number;
+        priceTo: number;
+        areaFrom: number;
+        areaTo: number;
+      },
+      _context: {}
+    ) => {
       const { priceFrom, priceTo, areaFrom, areaTo } = _args;
 
       const [leftFlats, flats] = await prisma.$transaction([
@@ -94,11 +112,50 @@ const resolvers = {
 
       return { leftFlats, flats };
     },
-    Flat: (_parent: Flat, _args: { flatNum: number }, _context: {}) => {
-      const {flatNum} = _args;
 
-      return prisma.flat.findUnique({ where: {flatNum} })
-    }
+    Flat: (_parent: Flat, _args: { flatNum: number }, _context: {}) => {
+      const { flatNum } = _args;
+
+      return prisma.flat.findUnique({ where: { flatNum } });
+    },
+
+    FlatStatistic: async (_parent: Flat, _args: {}, _context: {}) => {
+      const [flatsSold, totalIncome, soldFlatsByFloor] =
+        await prisma.$transaction([
+          prisma.flat.count({ where: { condition: Condition.sold } }),
+          prisma.flat.aggregate({
+            _sum: { price: true },
+            where: { condition: Condition.sold },
+          }),
+          prisma.flat.groupBy({
+            by: ["floor"],
+            where: {
+              condition: Condition.sold,
+            },
+            _count: {
+              _all: true,
+            },
+            orderBy: {
+              floor: "asc",
+            },
+          }),
+        ]);
+
+      const demandableFloor = soldFlatsByFloor.reduce(
+        (highestFloor: any, currentFloor: any) => {
+          const highestCount = highestFloor?._count?._all;
+          const currentCount = currentFloor?._count?._all || 0;
+          return currentCount > highestCount ? currentFloor : highestFloor;
+        }
+      ).floor;
+
+      return {
+        flatsSold,
+        totalIncome: totalIncome._sum.price,
+        demandableFloor,
+        soldFlatsByFloor,
+      };
+    },
   },
 };
 

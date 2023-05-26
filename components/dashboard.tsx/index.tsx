@@ -1,15 +1,48 @@
 import React from "react";
 import Stats from "./stats";
 import Chart from "./chart";
+import { useQuery } from "@apollo/client";
+import { FLAT_STATISTIC } from "@/libs/graphql/queries";
+
+type FlatStatistic = {
+  FlatStatistic: {
+    demandableFloor: number;
+    flatsSold: number;
+    totalIncome: number;
+    soldFlatsByFloor: {
+      floor: number;
+      _count: {
+        _all: number;
+      };
+    }[];
+  };
+};
 
 const Dashboard = () => {
+  const { data, loading, error } = useQuery<FlatStatistic>(FLAT_STATISTIC);
+
+  if (!data || loading) {
+    return (
+      <div className="flex items-center justify-center w-full h-full py-64">
+        <button className="btn loading"></button>
+      </div>
+    );
+  }
+
+  if (error) {
+    return <h1>error</h1>;
+  }
+
   return (
     <section className="py-16">
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div className="flex flex-col gap-y-12">
-        <Stats />
-        <Chart />
-
+          <Stats
+            demandableFloor={data.FlatStatistic.demandableFloor}
+            flatsSold={data.FlatStatistic.flatsSold}
+            totalIncome={data.FlatStatistic.totalIncome}
+          />
+          <Chart soldFlatsByFloor={data.FlatStatistic.soldFlatsByFloor}  />
         </div>
       </div>
     </section>
