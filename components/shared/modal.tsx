@@ -202,7 +202,7 @@ const Modal = ({ openModal, setOpenModal, flat, error, loading }: Props) => {
                 <button
                   type="button"
                   className="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white border border-transparent rounded-md shadow-sm bg-light_purple hover:bg-purple focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple sm:text-sm"
-                  onClick={() => setOpenModal(false)}
+                  onClick={() => push('/#contact')}
                 >
                   Contact Us
                 </button>
