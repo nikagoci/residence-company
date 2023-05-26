@@ -102,6 +102,14 @@ const Navbar = () => {
               >
                 Residence
               </Link>
+              <Link
+                href="/#contact"
+                scroll={false}
+                className="block py-2 pl-3 pr-4 text-base font-medium text-gray-500 border-l-4 border-transparent hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 sm:pl-5 sm:pr-6"
+                onClick={() => close()}
+              >
+                Contact
+              </Link>
             </div>
           </Disclosure.Panel>
         </>
