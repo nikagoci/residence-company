@@ -57,20 +57,6 @@ const typeDefs = gql`
     ): FlatsWithLeftFlats
     Flat(flatNum: Int): Flat
   }
-
-  type Mutation {
-    addFlat(
-      flatNum: Int
-      floor: Int
-      livingArea: Float
-      balconies: [Float]
-      bedrooms: [Float]
-      wetPoints: [Float]
-      price: Int
-      condition: Condition
-      points: String
-    ): Flat
-  }
 `;
 
 const resolvers = {
@@ -113,35 +99,6 @@ const resolvers = {
 
       return prisma.flat.findUnique({ where: {flatNum} })
     }
-  },
-  Mutation: {
-    addFlat: (_parent: Flat, _args: AddFlatArgs, _context: {}) => {
-      const {
-        flatNum,
-        floor,
-        livingArea,
-        balconies,
-        bedrooms,
-        wetPoints,
-        price,
-        condition,
-        points,
-      } = _args;
-
-      return prisma.flat.create({
-        data: {
-          flatNum,
-          floor,
-          livingArea,
-          balconies,
-          bedrooms,
-          wetPoints,
-          price,
-          condition,
-          points,
-        },
-      });
-    },
   },
 };
 
