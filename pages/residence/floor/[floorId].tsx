@@ -1,9 +1,23 @@
 import Floor from '@/components/floor'
+import Modal from '@/components/shared/modal';
+import FLATS from '@/fakeData';
+import { useQuery } from '@apollo/client';
 import { useRouter } from 'next/router'
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import {GET_SINGLE_FLAT} from '@/libs/graphql/queries'
+
+type SingleFlat = {
+  Flat: Flat
+}
 
 const SingeFloor = () => {
+
+  const [openModal, setOpenModal] = useState(false);
   const { query, push } = useRouter();
+  const { data, loading, error } = useQuery<SingleFlat>(GET_SINGLE_FLAT, {
+    variables: { flatNum: query.flat && +query.flat }
+  })
+
   const floorNum = query.floorId as string
 
   useEffect(() => {
@@ -12,8 +26,21 @@ const SingeFloor = () => {
     }
   }, [floorNum])
 
+  useEffect(() => {
+    if(query.flat){
+      setOpenModal(true)
+    }
+  }, [query])
+
   return (
+
+    
+    <>
+    <Modal flat={data?.Flat} loading={loading} error={error} openModal={openModal} setOpenModal={setOpenModal} />
+
     <Floor floorNum={floorNum} />
+    
+    </>
   )
 }
 

@@ -1,6 +1,7 @@
 import { Condition } from "@/fakeData";
 import Modal from "../shared/modal";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 type Props = {
   hoveredPolygon: number | null;
@@ -15,17 +16,19 @@ const SingleFloorPolygon = ({
   handlePolygonLeave,
   flat,
 }: Props) => {
-  const [openModal, setOpenModal] = useState(false);
+  const { push } = useRouter()
 
-  const handleModalOpen = () => {
-    if (flat.condition !== Condition.sold) {
-      setOpenModal(true);
+  const handlePageChange = () => {
+    if(flat.condition !== Condition.sold) {
+      push({
+        pathname: `/residence/floor/${flat.floor}`,
+        query: {flat: flat.flatNum}
+      })
     }
-  };
+  }
 
   return (
     <>
-      <Modal flat={flat} openModal={openModal} setOpenModal={setOpenModal} />
       <polygon
         points={flat.points}
         className={`${
@@ -41,7 +44,7 @@ const SingleFloorPolygon = ({
         `}
         onMouseEnter={() => handlePolygonHover(flat.flatNum)}
         onMouseLeave={handlePolygonLeave}
-        onClick={handleModalOpen}
+        onClick={handlePageChange}
       />
     </>
   );
