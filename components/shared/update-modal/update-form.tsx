@@ -1,8 +1,12 @@
-import Input from "./input";
-import {FieldError, useForm} from 'react-hook-form'
+import { useMutation } from "@apollo/client";
+import { FieldError, FieldValues, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+
 import Select from "../select";
-import { zodResolver } from '@hookform/resolvers/zod'
 import { schema } from "@/libs/update-schema";
+import { UPDATE_FLAT } from "@/libs/graphql/queries";
+import Input from "./input";
+import { Condition } from "@/fakeData";
 
 type FlatInfo = {
   livingArea: number;
@@ -10,36 +14,79 @@ type FlatInfo = {
   balconies: number[];
   bedrooms: number[];
   wetPoints: number[];
-  [key: string]: number[] | number
+  condition: Condition;
+  [key: string]: number[] | number | Condition;
 };
 
 type Props = {
   flatInfo: FlatInfo;
   removeProperty: (value: string, index: number) => void;
+  flatNum: number;
 };
 
-const UpdateForm = ({ flatInfo, removeProperty }: Props) => {
-  const {register, handleSubmit , formState: {errors}} = useForm({resolver: zodResolver(schema) })
-  const onSubmit = (e: any) => {
-    console.log(e)
-  }
-  console.log(errors)
+const UpdateForm = ({ flatInfo, removeProperty, flatNum }: Props) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FieldValues>({ resolver: zodResolver(schema) });
+
+  const [updateFlat] = useMutation(UPDATE_FLAT);
+
+  const onSubmit = (inputValues: FieldValues) => {
+    const balconies = [inputValues.balconies].map((obj) =>
+      Object.values(obj)
+    )[0];
+    const bedrooms = [inputValues.bedrooms].map((obj) => Object.values(obj))[0];
+    const wetPoints = [inputValues.wetPoints].map((obj) =>
+      Object.values(obj)
+    )[0];
+
+    const { livingArea, condition, price } = inputValues;
+
+    updateFlat({
+      variables: {
+        balconies,
+        bedrooms,
+        wetPoints,
+        livingArea,
+        condition,
+        price,
+        flatNum,
+      },
+    });
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="grid grid-cols-2 gap-12 py-6 text-lg font-bold">
-      <div className="flex items-center justify-start gap-x-3">
+        <div className="flex items-center justify-start gap-x-3">
           <label htmlFor="condition">Condition:</label>
-          <Select options={["sale", "sold"]} id='condition' register={register} />
+          <Select
+            options={["sale", "sold"]}
+            id="condition"
+            register={register}
+            primaryValue={flatInfo.condition}
+          />
         </div>
         <div className="flex items-center justify-between">
           <label htmlFor="livingArea">Living Area:</label>
-          <Input error={errors?.livingArea} value={flatInfo.livingArea} id="livingArea" register={register} />
+          <Input
+            error={errors?.livingArea}
+            value={flatInfo.livingArea}
+            id="livingArea"
+            register={register}
+          />
         </div>
 
         <div className="flex items-center justify-between">
           <label htmlFor="price">Price</label>
-          <Input error={errors?.price} value={flatInfo.price} id="price" register={register} />
+          <Input
+            error={errors?.price}
+            value={flatInfo.price}
+            id="price"
+            register={register}
+          />
         </div>
         {flatInfo.balconies.map((baclony, idx) => (
           <div key={idx} className="flex items-center justify-between">
@@ -50,9 +97,14 @@ const UpdateForm = ({ flatInfo, removeProperty }: Props) => {
               index={idx}
               removeProperty={removeProperty}
               value={baclony}
-              id={`balconies.balcony${idx+1}`}
+              id={`balconies.balcony${idx + 1}`}
               register={register}
-              error={errors?.balconies && (errors?.balconies[`balcony${idx+1}` as keyof typeof errors['balconies']] as FieldError)}
+              error={
+                errors?.balconies &&
+                (errors?.balconies[
+                  `balcony${idx + 1}` as keyof (typeof errors)["balconies"]
+                ] as FieldError)
+              }
             />
           </div>
         ))}
@@ -65,9 +117,14 @@ const UpdateForm = ({ flatInfo, removeProperty }: Props) => {
               index={idx}
               removeProperty={removeProperty}
               value={bedroom}
-              id={`bedrooms.bedroom${idx+1}`}
+              id={`bedrooms.bedroom${idx + 1}`}
               register={register}
-              error={errors?.bedrooms && (errors?.bedrooms[`bedroom${idx+1}` as keyof typeof errors['bedrooms']] as FieldError)}
+              error={
+                errors?.bedrooms &&
+                (errors?.bedrooms[
+                  `bedroom${idx + 1}` as keyof (typeof errors)["bedrooms"]
+                ] as FieldError)
+              }
             />
           </div>
         ))}
@@ -80,9 +137,14 @@ const UpdateForm = ({ flatInfo, removeProperty }: Props) => {
               index={idx}
               removeProperty={removeProperty}
               value={wetPoint}
-              id={`wetPoints.wetPoint${idx+1}`}
+              id={`wetPoints.wetPoint${idx + 1}`}
               register={register}
-              error={errors?.wetPoints && (errors?.wetPoints[`wetPoint${idx+1}` as keyof typeof errors['wetPoints']] as FieldError)}
+              error={
+                errors?.wetPoints &&
+                (errors?.wetPoints[
+                  `wetPoint${idx + 1}` as keyof (typeof errors)["wetPoints"]
+                ] as FieldError)
+              }
             />
           </div>
         ))}

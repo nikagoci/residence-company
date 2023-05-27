@@ -1,18 +1,24 @@
+import {
+  FieldValues,
+  UseFormRegister,
+} from "react-hook-form";
+
 type Props = {
   options: number[] | string[];
   id: string;
   changeHandler?: (value: number, id: string) => void;
-  register?: any;
+  register?: UseFormRegister<FieldValues>;
+  primaryValue: Condition
 };
 
-const Select = ({ options, id, changeHandler, register }: Props) => {
+const Select = ({ options, id, changeHandler, register, primaryValue }: Props) => {
   if (register) {
     return (
       <select
         id={id}
-        name={id}
         className="w-full input input-bordered"
         {...register("condition")}
+        defaultValue={primaryValue}
       >
         {options.map((option, idx) => (
           <option value={option} key={idx}>

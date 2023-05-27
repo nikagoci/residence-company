@@ -1,12 +1,11 @@
 import { Dispatch, Fragment, SetStateAction, useEffect, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XIcon } from "@heroicons/react/outline";
-import Image from "next/image";
 import { ApolloErrorOptions } from "@apollo/client/errors";
-import { Router, useRouter } from "next/router";
-import Input from "./input";
+import { useRouter } from "next/router";
 import AddProperty from "./add-property";
 import UpdateForm from "./update-form";
+import { Condition } from "@/fakeData";
 
 type Props = {
   openModal: boolean;
@@ -16,12 +15,14 @@ type Props = {
   loading: boolean;
 };
 type FlatInfo = {
-    livingArea: number;
-    price: number;
-    balconies: number[];
-    bedrooms: number[];
-    wetPoints: number[];
-  };
+  livingArea: number;
+  price: number;
+  balconies: number[];
+  bedrooms: number[];
+  wetPoints: number[];
+  condition: Condition;
+  [key: string]: number[] | number | Condition;
+};
 
 const UpdateModal = ({
   openModal,
@@ -32,6 +33,22 @@ const UpdateModal = ({
 }: Props) => {
   const { push } = useRouter();
 
+  const [flatInfo, setFlatInfo] = useState<FlatInfo>({
+    livingArea: flat?.livingArea as number,
+    price: flat?.price as number,
+    balconies: flat?.balconies as number[],
+    bedrooms: flat?.bedrooms as number[],
+    wetPoints: flat?.wetPoints as number[],
+    condition: flat?.condition as Condition,
+  });
+
+  const handleClose = () => {
+    if (flat) {
+      setOpenModal(false);
+      push({ pathname: `/residence/floor/${flat.floor}` });
+    }
+  };
+  
   if (!flat || loading) {
     if (!openModal) {
       return <></>;
@@ -81,21 +98,6 @@ const UpdateModal = ({
     }
   }
 
-  const [flatInfo, setFlatInfo] = useState<FlatInfo>({
-    livingArea: flat.livingArea,
-    price: flat.price,
-    balconies: flat.balconies,
-    bedrooms: flat.bedrooms,
-    wetPoints: flat.wetPoints,
-  });
-
-  const handleClose = () => {
-    if (flat) {
-      setOpenModal(false);
-      push({ pathname: `/residence/floor/${flat.floor}` });
-    }
-  };
-
   const addProperty = (value: string) => {
     const key = value as keyof FlatInfo;
     setFlatInfo((prev) => ({
@@ -106,14 +108,14 @@ const UpdateModal = ({
 
   const removeProperty = (value: string, index: number) => {
     const key = value as keyof FlatInfo;
-    console.log(key, index)
-    setFlatInfo(prev => {
+    console.log(key, index);
+    setFlatInfo((prev) => {
       if (Array.isArray(prev[key])) {
-        const updatedArray = [...prev[key] as number[]];
+        const updatedArray = [...(prev[key] as number[])];
         updatedArray.splice(index, 1);
         return {
           ...prev,
-          [key]: updatedArray
+          [key]: updatedArray,
         };
       }
       return prev;
@@ -187,7 +189,11 @@ const UpdateModal = ({
                 </div>
               </div>
               <AddProperty addProperty={addProperty} />
-              <UpdateForm flatInfo={flatInfo} removeProperty={removeProperty} />
+              <UpdateForm
+                flatNum={flat.flatNum}
+                flatInfo={flatInfo}
+                removeProperty={removeProperty}
+              />
             </div>
           </Transition.Child>
         </div>

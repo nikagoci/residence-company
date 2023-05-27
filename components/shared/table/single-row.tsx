@@ -1,4 +1,5 @@
 import { Condition } from "@/fakeData";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 
 type Props = {
@@ -6,14 +7,35 @@ type Props = {
 };
 
 const SingleRow = ({ flat }: Props) => {
-  const router = useRouter()
+  const { status } = useSession();
+  const { push } = useRouter();
+
+  if (status === "loading") {
+    return <h1></h1>;
+  }
 
   const handlePageChange = () => {
-    router.push({
-      pathname: `/residence/floor/${flat.floor}`,
-      query: { flat: flat.flatNum }
-    })
-  }
+    if (status === "unauthenticated") {
+      push({
+        pathname: `/residence/floor/${flat.floor}`,
+        query: { flat: flat.flatNum },
+      });
+    } else if (status === "authenticated") {
+      push({
+        pathname: `/residence/floor/update/${flat.floor}`,
+        query: { flat: flat.flatNum },
+      });
+    }
+  };
+
+  const handlePageChangeAuth = () => {
+    if (status === "authenticated") {
+      push({
+        pathname: `/residence/floor/update/${flat.floor}`,
+        query: { flat: flat.flatNum },
+      });
+    }
+  };
 
   return (
     <tr className="bg-white">
@@ -59,7 +81,9 @@ const SingleRow = ({ flat }: Props) => {
             </svg>
           </button>
         ) : (
-          <h1 className="text-lg text-red-500">Sold</h1>
+          <h1 className={`${status === 'authenticated' ? 'cursor-pointer' : ''} text-lg text-red-500`} onClick={handlePageChangeAuth}>
+            Sold
+          </h1>
         )}
       </td>
     </tr>

@@ -24,8 +24,7 @@ const SingleFloorPolygon = ({
   
 
   const handlePageChange = () => {
-    if(flat.condition !== Condition.sold) {
-      if(status === 'unauthenticated'){
+      if(status === 'unauthenticated' && flat.condition !== Condition.sold){
         push({
           pathname: `/residence/floor/${flat.floor}`,
           query: {flat: flat.flatNum}
@@ -36,8 +35,6 @@ const SingleFloorPolygon = ({
           query: {flat: flat.flatNum}
         })
       }
-      
-    }
   }
 
   return (

@@ -34,8 +34,9 @@ const Input = ({
           <input
             id={id}
             type="text"
+            placeholder={`${value}`}
             className={`${
-              error ? "border-red-500" : "border-green-200"
+              error && "border-red-500"
             } border input input-bordered`}
             {...register(id, { valueAsNumber: true })}
           />
@@ -48,7 +49,7 @@ const Input = ({
             </div>
           )}
         </div>
-        {error && <p className="max-w-[90%] absolute mt-2 text-xs ">{error.message}</p>}
+        {error && <p className="max-w-[90%] text-red-500 absolute mt-2 text-xs ">{error.message}</p>}
       </div>
     </>
   );
