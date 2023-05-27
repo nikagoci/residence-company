@@ -1,4 +1,7 @@
 import Input from "./input";
+import {useForm} from 'react-hook-form'
+import Select from "../select";
+
 type FlatInfo = {
   livingArea: number;
   price: number;
@@ -13,19 +16,27 @@ type Props = {
 };
 
 const UpdateForm = ({ flatInfo, removeProperty }: Props) => {
+  const {register, handleSubmit} = useForm()
 
-    console.log(flatInfo)
+  const onSubmit = (e: any) => {
+    console.log(e)
+  }
+
   return (
-    <form>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div className="grid grid-cols-2 gap-8 py-6 text-lg font-bold">
+      <div className="flex items-center justify-start gap-x-3">
+          <label htmlFor="condition">Condition:</label>
+          <Select options={["sale", "sold"]} id='condition' register={register} />
+        </div>
         <div className="flex items-center justify-between">
           <label htmlFor="livingArea">Living Area:</label>
-          <Input value={flatInfo.livingArea} id="livingArea" />
+          <Input value={flatInfo.livingArea} id="livingArea" register={register} />
         </div>
 
         <div className="flex items-center justify-between">
           <label htmlFor="price">Price</label>
-          <Input value={flatInfo.price} id="price" />
+          <Input value={flatInfo.price} id="price" register={register} />
         </div>
         {flatInfo.balconies.map((baclony, idx) => (
           <div key={idx} className="flex items-center justify-between">
@@ -37,6 +48,7 @@ const UpdateForm = ({ flatInfo, removeProperty }: Props) => {
               removeProperty={removeProperty}
               value={baclony}
               id="balcony"
+              register={register}
             />
           </div>
         ))}
@@ -50,6 +62,7 @@ const UpdateForm = ({ flatInfo, removeProperty }: Props) => {
               removeProperty={removeProperty}
               value={bedroom}
               id={`bedroom${idx}`}
+              register={register}
             />
           </div>
         ))}
@@ -63,13 +76,14 @@ const UpdateForm = ({ flatInfo, removeProperty }: Props) => {
               removeProperty={removeProperty}
               value={wetPoint}
               id={`wetPoint${idx}`}
+              register={register}
             />
           </div>
         ))}
       </div>
       <div className="flex justify-center mt-5 sm:mt-6">
         <button
-          type="button"
+          type="submit"
           className="inline-flex justify-center px-6 py-2 text-lg font-medium text-white border border-transparent rounded-md shadow-sm bg-light_purple hover:bg-purple focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple "
         >
           Submit

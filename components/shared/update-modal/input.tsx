@@ -1,5 +1,4 @@
 import { XCircleIcon } from "@heroicons/react/outline";
-import { useEffect, useState } from "react";
 
 type Props = {
   value: string | number;
@@ -8,25 +7,20 @@ type Props = {
   removable?: boolean;
   index?: number
   name?: string;
+  register: any
 };
 
-const Input = ({ value, id, removeProperty, removable, index,name }: Props) => {
-  const [newValue, setNewValue] = useState(value)
-
-
-  useEffect(() => {
-    setNewValue(value)
-  }, [value])
-
+const Input = ({ value, id, removeProperty, removable, index, name, register }: Props) => {
   return (
     <div className="relative">
       <input
         id={id}
         name={id}
         type="text"
-        value={newValue}
-        onChange={(e) => setNewValue(e.target.value)}
+        // value={newValue}
+        // onChange={(e) => setNewValue(e.target.value)}
         className=" input input-bordered"
+        {...register(id)}
       />
       {removable && index !== undefined && name && removeProperty && (
         <div className="absolute -translate-y-1/2 right-4 top-1/2">

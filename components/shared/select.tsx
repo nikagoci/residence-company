@@ -1,10 +1,32 @@
 type Props = {
-  options: number[];
+  options: number[] | string[];
   id: string;
-  changeHandler: (value: number, id: string) => void;
+  changeHandler?: (value: number, id: string) => void;
+  register?: any;
 };
 
-const Select = ({ options, id, changeHandler }: Props) => {
+const Select = ({ options, id, changeHandler, register }: Props) => {
+  if (register) {
+    return (
+      <select
+        id={id}
+        name={id}
+        className="w-full input input-bordered"
+        {...register("condition")}
+      >
+        {options.map((option, idx) => (
+          <option value={option} key={idx}>
+            {option.toString().charAt(0).toUpperCase() + option.toString().slice(1)}
+          </option>
+        ))}
+      </select>
+    );
+  }
+
+  if(!changeHandler){
+    return <div></div>
+  }
+  
   return (
     <select
       id={id}
