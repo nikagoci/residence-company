@@ -1,6 +1,8 @@
 import Input from "./input";
-import {useForm} from 'react-hook-form'
+import {FieldError, useForm} from 'react-hook-form'
 import Select from "../select";
+import { zodResolver } from '@hookform/resolvers/zod'
+import { schema } from "@/libs/update-schema";
 
 type FlatInfo = {
   livingArea: number;
@@ -8,6 +10,7 @@ type FlatInfo = {
   balconies: number[];
   bedrooms: number[];
   wetPoints: number[];
+  [key: string]: number[] | number
 };
 
 type Props = {
@@ -16,27 +19,27 @@ type Props = {
 };
 
 const UpdateForm = ({ flatInfo, removeProperty }: Props) => {
-  const {register, handleSubmit} = useForm()
-
+  const {register, handleSubmit , formState: {errors}} = useForm({resolver: zodResolver(schema) })
   const onSubmit = (e: any) => {
     console.log(e)
   }
+  console.log(errors)
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="grid grid-cols-2 gap-8 py-6 text-lg font-bold">
+      <div className="grid grid-cols-2 gap-12 py-6 text-lg font-bold">
       <div className="flex items-center justify-start gap-x-3">
           <label htmlFor="condition">Condition:</label>
           <Select options={["sale", "sold"]} id='condition' register={register} />
         </div>
         <div className="flex items-center justify-between">
           <label htmlFor="livingArea">Living Area:</label>
-          <Input value={flatInfo.livingArea} id="livingArea" register={register} />
+          <Input error={errors?.livingArea} value={flatInfo.livingArea} id="livingArea" register={register} />
         </div>
 
         <div className="flex items-center justify-between">
           <label htmlFor="price">Price</label>
-          <Input value={flatInfo.price} id="price" register={register} />
+          <Input error={errors?.price} value={flatInfo.price} id="price" register={register} />
         </div>
         {flatInfo.balconies.map((baclony, idx) => (
           <div key={idx} className="flex items-center justify-between">
@@ -47,8 +50,9 @@ const UpdateForm = ({ flatInfo, removeProperty }: Props) => {
               index={idx}
               removeProperty={removeProperty}
               value={baclony}
-              id="balcony"
+              id={`balconies.balcony${idx+1}`}
               register={register}
+              error={errors?.balconies && (errors?.balconies[`balcony${idx+1}` as keyof typeof errors['balconies']] as FieldError)}
             />
           </div>
         ))}
@@ -61,8 +65,9 @@ const UpdateForm = ({ flatInfo, removeProperty }: Props) => {
               index={idx}
               removeProperty={removeProperty}
               value={bedroom}
-              id={`bedroom${idx}`}
+              id={`bedrooms.bedroom${idx+1}`}
               register={register}
+              error={errors?.bedrooms && (errors?.bedrooms[`bedroom${idx+1}` as keyof typeof errors['bedrooms']] as FieldError)}
             />
           </div>
         ))}
@@ -75,8 +80,9 @@ const UpdateForm = ({ flatInfo, removeProperty }: Props) => {
               index={idx}
               removeProperty={removeProperty}
               value={wetPoint}
-              id={`wetPoint${idx}`}
+              id={`wetPoints.wetPoint${idx+1}`}
               register={register}
+              error={errors?.wetPoints && (errors?.wetPoints[`wetPoint${idx+1}` as keyof typeof errors['wetPoints']] as FieldError)}
             />
           </div>
         ))}
