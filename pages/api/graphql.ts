@@ -2,16 +2,14 @@ import { Condition } from "@/fakeData";
 import prisma from "@/libs/prisma";
 import { gql, ApolloServer } from "apollo-server-micro";
 
-type AddFlatArgs = {
-  flatNum: number;
-  floor: number;
+type updateFlatArgs = {
   livingArea: number;
   balconies: number[];
   bedrooms: number[];
   wetPoints: number[];
   price: number;
   condition: Condition;
-  points: string;
+  flatNum: number;
 };
 
 const typeDefs = gql`
@@ -64,6 +62,18 @@ const typeDefs = gql`
     ): FlatsWithLeftFlats
     Flat(flatNum: Int): Flat
     FlatStatistic: Statistic
+  }
+
+  type Mutation {
+    updateFlat(
+      livingArea: Float
+      balconies: [Float]
+      bedrooms: [Float]
+      wetPoints: [Float]
+      price: Int
+      condition: Condition
+      flatNum: Int
+    ): Flat
   }
 `;
 
@@ -157,6 +167,20 @@ const resolvers = {
       };
     },
   },
+  Mutation: {
+    updateFlat: (_parent: Flat, _args: updateFlatArgs, _context: {}) => {
+      const { balconies, bedrooms, condition,flatNum,livingArea,price,wetPoints } = _args
+
+      return prisma.flat.update({
+        where: {
+          flatNum
+        },
+        data: {
+          balconies, bedrooms, condition, livingArea,price, wetPoints
+        }
+      })
+    }
+  }
 };
 
 const apolloServer = new ApolloServer({ typeDefs, resolvers });

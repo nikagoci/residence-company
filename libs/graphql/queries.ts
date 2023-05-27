@@ -76,3 +76,28 @@ export const FLAT_STATISTIC = gql`
     }
   }
 `;
+// livingArea: Float
+//       balconies: [Float]
+//       bedrooms: [Float]
+//       wetPoints: [Float]
+//       price: Int
+//       condition: Condition
+//       flatNum: Int
+
+export const UPDATE_FLAT = gql`
+mutation updateFlat($livingArea: Float, $balconies: [Float], $bedrooms: [Float], $wetPoints: [Float], $price: Int, $condition: Condition, $flatNum: Int){
+	updateFlat(livingArea: $livingArea, balconies: $balconies, bedrooms: $bedrooms, wetPoints: $wetPoints, price: $price, condition: $condition, flatNum: $flatNum ){
+    		flatNum
+        floor
+        livingArea
+        balconies
+        bedrooms
+        wetPoints
+        price
+        condition
+        points
+    		id
+  }
+}
+
+`
