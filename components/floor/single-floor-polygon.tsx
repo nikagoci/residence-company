@@ -1,6 +1,5 @@
 import { Condition } from "@/fakeData";
-import Modal from "../shared/modal";
-import { useState } from "react";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 
 type Props = {
@@ -16,14 +15,28 @@ const SingleFloorPolygon = ({
   handlePolygonLeave,
   flat,
 }: Props) => {
+  const { status } = useSession()
   const { push } = useRouter()
+
+  if(status === 'loading') {
+    return <h1></h1>
+  }
+  
 
   const handlePageChange = () => {
     if(flat.condition !== Condition.sold) {
-      push({
-        pathname: `/residence/floor/${flat.floor}`,
-        query: {flat: flat.flatNum}
-      })
+      if(status === 'unauthenticated'){
+        push({
+          pathname: `/residence/floor/${flat.floor}`,
+          query: {flat: flat.flatNum}
+        })
+      } else if(status === 'authenticated'){
+        push({
+          pathname: `/residence/floor/update/${flat.floor}`,
+          query: {flat: flat.flatNum}
+        })
+      }
+      
     }
   }
 

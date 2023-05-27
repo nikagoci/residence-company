@@ -1,6 +1,5 @@
 import Floor from '@/components/floor'
 import Modal from '@/components/shared/modal';
-import FLATS from '@/fakeData';
 import { useQuery } from '@apollo/client';
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react';
