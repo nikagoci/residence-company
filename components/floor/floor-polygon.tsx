@@ -71,7 +71,7 @@ const FloorPolygon = ({ floorNum }: Props) => {
               className={`${
                 disableButton === "first"
                   ? "bg-light_blue pointer-events-none"
-                  : "bg-blue active:scale-110"
+                  : "bg-primary active:scale-110"
               } p-4 text-white transition duration-300 rounded-full `}
             >
               <ArrowLeftIcon className="w-4" />
@@ -81,7 +81,7 @@ const FloorPolygon = ({ floorNum }: Props) => {
               className={`${
                 disableButton === "second"
                   ? "bg-light_blue pointer-events-none"
-                  : "bg-blue active:scale-110"
+                  : "bg-primay active:scale-110"
               } p-4 text-white transition duration-300 rounded-full `}
             >
               <ArrowRightIcon className="w-4" />
@@ -115,7 +115,7 @@ const FloorPolygon = ({ floorNum }: Props) => {
           height={820}
         />
         {hoveredPolygon && (
-          <div className="absolute right-0 px-6 py-2 text-xs font-bold text-white lg:top-14 xl:top-24 top-4 sm:text-sm bg-blue rounded-xl ">
+          <div className="absolute right-0 px-6 py-2 text-xs font-bold text-white lg:top-14 xl:top-24 top-4 sm:text-sm bg-primary rounded-xl ">
             <h3>Flat: {hoveredPolygon}</h3>
             <h3>Area: {totalArea.toFixed(1)} sq.m</h3>
           </div>
@@ -128,7 +128,7 @@ const FloorPolygon = ({ floorNum }: Props) => {
               className={`${
                 disableButton === "first"
                   ? "bg-light_blue pointer-events-none"
-                  : "bg-blue active:scale-110"
+                  : "bg-primary active:scale-110"
               } p-4 text-white transition duration-300 rounded-full `}
             >
               <ArrowLeftIcon className="w-4" />
@@ -138,7 +138,7 @@ const FloorPolygon = ({ floorNum }: Props) => {
               className={`${
                 disableButton === "second"
                   ? "bg-light_blue pointer-events-none"
-                  : "bg-blue active:scale-110"
+                  : "bg-primary active:scale-110"
               } p-4 text-white transition duration-300 rounded-full `}
             >
               <ArrowRightIcon className="w-4" />

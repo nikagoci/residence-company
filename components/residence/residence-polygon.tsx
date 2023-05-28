@@ -84,7 +84,7 @@ const ResidencePolygon = ({ leftFlatInfo, loading } : Props) => {
           <div
             className={`${
               leftFlats === 0
-            } absolute px-6 py-2 text-xs font-bold text-white sm:text-sm bg-blue top-4 right-4 rounded-xl `}
+            } absolute px-6 py-2 text-xs font-bold text-white sm:text-sm bg-primary top-4 right-4 rounded-xl `}
           >
             <h3>{hoveredPolygon} Floor</h3>
             <h3 className={`${leftFlats === 0 ? "text-red-500" : ""}`}>

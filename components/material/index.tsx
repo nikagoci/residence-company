@@ -85,14 +85,14 @@ const Material = () => {
             </p>
             <div className="flex gap-x-4">
               <button
-                className={`${disableButton === 'first' ? 'bg-light_blue' : 'bg-blue active:scale-110'} p-4 text-white transition duration-300 rounded-full `}
+                className={`${disableButton === 'first' ? 'bg-light_blue' : 'bg-primary active:scale-110'} p-4 text-white transition duration-300 rounded-full `}
                 onClick={handleSlidePrev}
                 disabled={disableButton === 'first'}
               >
                 <ArrowLeftIcon className="w-4" />
               </button>
               <button
-                className={`${disableButton === 'second' ? 'bg-light_blue' : 'bg-blue active:scale-110'} p-4 text-white transition duration-300 rounded-full `}
+                className={`${disableButton === 'second' ? 'bg-light_blue' : 'bg-primary active:scale-110'} p-4 text-white transition duration-300 rounded-full `}
                 onClick={handleSlideNext}
                 disabled={disableButton === 'second'}
               >

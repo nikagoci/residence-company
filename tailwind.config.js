@@ -10,7 +10,6 @@ module.exports = {
       colors: {
         light_purple: "#d40f7d",
         purple: "#be066d",
-        blue: "rgb(33, 140, 204)",
         light_blue: "rgba(33, 140, 204, 0.26)",
         cadet_blue: '#5f9ea0',
         primary: '#238ccc'

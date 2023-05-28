@@ -21,7 +21,7 @@ const SingleResidencePolygon = ({
         points={points}
         className={`${
           hoveredPolygon === id
-            ? "opacity-30   fill-light_blue stroke-blue stroke-[3px] cursor-pointer"
+            ? "opacity-30   fill-light_blue stroke-primary stroke-[3px] cursor-pointer"
             : "opacity-0"
         }`}
         onMouseEnter={() => handlePolygonHover(id)}

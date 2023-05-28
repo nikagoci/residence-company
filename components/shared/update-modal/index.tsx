@@ -182,7 +182,7 @@ const UpdateModal = ({
                   >
                     Rivertown Residence
                   </Dialog.Title>
-                  <div className="flex justify-center mt-2 font-semibold text-md text-blue breadcrumbs">
+                  <div className="flex justify-center mt-2 font-semibold text-md text-primary breadcrumbs">
                     <ul>
                       <li>Floor {flat.floor}</li>
                       <li>Flat {flat.flatNum}</li>

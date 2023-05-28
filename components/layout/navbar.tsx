@@ -16,7 +16,7 @@ const Navbar = () => {
     "inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 border-b-2 border-transparent hover:border-gray-300 hover:text-gray-700";
 
   const mobileActive =
-    "block py-2 pl-3 pr-4 text-base font-medium border-l-4 border-blue text-primary bg-light_blue sm:pl-5 sm:pr-6";
+    "block py-2 pl-3 pr-4 text-base font-medium border-l-4 border-primary text-primary bg-light_blue sm:pl-5 sm:pr-6";
   const notMobileActive =
     "block py-2 pl-3 pr-4 text-base font-medium text-gray-500 border-l-4 border-transparent hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 sm:pl-5 sm:pr-6";
 

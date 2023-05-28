@@ -43,7 +43,7 @@ const SingleFloorPolygon = ({
         points={flat.points}
         className={`${
           hoveredPolygon === flat.flatNum && flat.condition !== Condition.sold
-            ? "opacity-30   fill-blue stroke-[3px] cursor-pointer"
+            ? "opacity-30   fill-primary stroke-[3px] cursor-pointer"
             : "opacity-0 "
         }
         ${
