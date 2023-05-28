@@ -76,13 +76,6 @@ export const FLAT_STATISTIC = gql`
     }
   }
 `;
-// livingArea: Float
-//       balconies: [Float]
-//       bedrooms: [Float]
-//       wetPoints: [Float]
-//       price: Int
-//       condition: Condition
-//       flatNum: Int
 
 export const UPDATE_FLAT = gql`
   mutation updateFlat(

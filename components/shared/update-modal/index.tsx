@@ -6,14 +6,16 @@ import { useRouter } from "next/router";
 import AddProperty from "./add-property";
 import UpdateForm from "./update-form";
 import { Condition } from "@/fakeData";
+import SuccessForm from "./success-form";
 
 type Props = {
   openModal: boolean;
   setOpenModal: Dispatch<SetStateAction<boolean>>;
-  flat: Flat | undefined;
+  flat: Flat;
   error: ApolloErrorOptions | undefined;
   loading: boolean;
 };
+
 type FlatInfo = {
   livingArea: number;
   price: number;
@@ -31,15 +33,16 @@ const UpdateModal = ({
   error,
   loading,
 }: Props) => {
+  const [success, setSuccess] = useState(false);
   const { push } = useRouter();
 
   const [flatInfo, setFlatInfo] = useState<FlatInfo>({
-    livingArea: flat?.livingArea as number,
-    price: flat?.price as number,
-    balconies: flat?.balconies as number[],
-    bedrooms: flat?.bedrooms as number[],
-    wetPoints: flat?.wetPoints as number[],
-    condition: flat?.condition as Condition,
+    livingArea: flat.livingArea as number,
+    price: flat.price as number,
+    balconies: flat.balconies as number[],
+    bedrooms: flat.bedrooms as number[],
+    wetPoints: flat.wetPoints as number[],
+    condition: flat.condition as Condition,
   });
 
   const handleClose = () => {
@@ -48,7 +51,7 @@ const UpdateModal = ({
       push({ pathname: `/residence/floor/${flat.floor}` });
     }
   };
-  
+
   if (!flat || loading) {
     if (!openModal) {
       return <></>;
@@ -172,7 +175,6 @@ const UpdateModal = ({
                     onClick={handleClose}
                   />
                 </div>
-
                 <div className="mt-3 text-center sm:mt-5">
                   <Dialog.Title
                     as="h3"
@@ -188,12 +190,19 @@ const UpdateModal = ({
                   </div>
                 </div>
               </div>
-              <AddProperty addProperty={addProperty} />
-              <UpdateForm
-                flatNum={flat.flatNum}
-                flatInfo={flatInfo}
-                removeProperty={removeProperty}
-              />
+              {success ? (
+                <SuccessForm flatNum={flat.flatNum} floor={flat.floor} />
+              ) : (
+                <>
+                  <AddProperty addProperty={addProperty} />
+                  <UpdateForm
+                    flatNum={flat.flatNum}
+                    flatInfo={flatInfo}
+                    removeProperty={removeProperty}
+                    setSuccess={setSuccess}
+                  />
+                </>
+              )}
             </div>
           </Transition.Child>
         </div>

@@ -1,9 +1,6 @@
 import Dashboard from "@/components/dashboard.tsx";
-import prisma from "@/libs/prisma";
-import { GetServerSideProps } from "next";
-import { useSession, signOut, getSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
 
 const DashboardPage = () => {
   const { status } = useSession();

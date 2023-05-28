@@ -8,7 +8,7 @@ type Props = {
   id: string;
   changeHandler?: (value: number, id: string) => void;
   register?: UseFormRegister<FieldValues>;
-  primaryValue: Condition
+  primaryValue?: Condition
 };
 
 const Select = ({ options, id, changeHandler, register, primaryValue }: Props) => {

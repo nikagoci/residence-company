@@ -7,6 +7,7 @@ import { schema } from "@/libs/update-schema";
 import { UPDATE_FLAT } from "@/libs/graphql/queries";
 import Input from "./input";
 import { Condition } from "@/fakeData";
+import { Dispatch, SetStateAction, useEffect } from "react";
 
 type FlatInfo = {
   livingArea: number;
@@ -22,16 +23,39 @@ type Props = {
   flatInfo: FlatInfo;
   removeProperty: (value: string, index: number) => void;
   flatNum: number;
+  setSuccess: Dispatch<SetStateAction<boolean>>;
 };
 
-const UpdateForm = ({ flatInfo, removeProperty, flatNum }: Props) => {
+type UpdateFlat = {
+  livingArea: number;
+  balconies: number[];
+  bedrooms: number[];
+  wetPoints: number[];
+  price: number;
+  condition: Condition;
+  flatNum: number;
+};
+
+const UpdateForm = ({
+  flatInfo,
+  removeProperty,
+  flatNum,
+  setSuccess,
+}: Props) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FieldValues>({ resolver: zodResolver(schema) });
 
-  const [updateFlat] = useMutation(UPDATE_FLAT);
+  const [updateFlat, { data, loading }] =
+    useMutation<UpdateFlat>(UPDATE_FLAT);
+
+  useEffect(() => {
+    if (!loading && data) {
+      setSuccess(true);
+    }
+  }, [data, loading]);
 
   const onSubmit = (inputValues: FieldValues) => {
     const balconies = [inputValues.balconies].map((obj) =>
@@ -55,6 +79,7 @@ const UpdateForm = ({ flatInfo, removeProperty, flatNum }: Props) => {
         flatNum,
       },
     });
+
   };
 
   return (
@@ -88,7 +113,7 @@ const UpdateForm = ({ flatInfo, removeProperty, flatNum }: Props) => {
             register={register}
           />
         </div>
-        {flatInfo.balconies.map((baclony, idx) => (
+        {flatInfo?.balconies.map((baclony, idx) => (
           <div key={idx} className="flex items-center justify-between">
             <label htmlFor="balcony">Balcony</label>
             <Input
