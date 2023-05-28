@@ -1,18 +1,24 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { signOut, useSession } from "next-auth/react";
 
 import { Disclosure } from "@headlessui/react";
-import {  MenuIcon, XIcon } from "@heroicons/react/outline";
+import { MenuIcon, XIcon } from "@heroicons/react/outline";
 
 const Navbar = () => {
-  const router = useRouter()
+  const router = useRouter();
+  const { status } = useSession();
 
-  const active = 'inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900 border-b-2 border-primary'
-  const notActive = 'inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 border-b-2 border-transparent hover:border-gray-300 hover:text-gray-700'
+  const active =
+    "inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900 border-b-2 border-primary";
+  const notActive =
+    "inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 border-b-2 border-transparent hover:border-gray-300 hover:text-gray-700";
 
-  const mobileActive = 'block py-2 pl-3 pr-4 text-base font-medium border-l-4 border-blue text-primary bg-light_blue sm:pl-5 sm:pr-6'
-  const notMobileActive = 'block py-2 pl-3 pr-4 text-base font-medium text-gray-500 border-l-4 border-transparent hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 sm:pl-5 sm:pr-6'
+  const mobileActive =
+    "block py-2 pl-3 pr-4 text-base font-medium border-l-4 border-blue text-primary bg-light_blue sm:pl-5 sm:pr-6";
+  const notMobileActive =
+    "block py-2 pl-3 pr-4 text-base font-medium text-gray-500 border-l-4 border-transparent hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 sm:pl-5 sm:pr-6";
 
   return (
     <Disclosure as="nav" className="shadow bg-base-200">
@@ -47,7 +53,9 @@ const Navbar = () => {
                   {/* Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" */}
                   <Link
                     href="/"
-                    className={`${router.pathname === '/' ? active : notActive}`}
+                    className={`${
+                      router.pathname === "/" ? active : notActive
+                    }`}
                   >
                     Home
                   </Link>
@@ -60,7 +68,9 @@ const Navbar = () => {
                   </Link>
                   <Link
                     href="/residence"
-                    className={`${router.pathname === '/residence' ? active : notActive}`}
+                    className={`${
+                      router.pathname === "/residence" ? active : notActive
+                    }`}
                   >
                     Residence
                   </Link>
@@ -71,7 +81,13 @@ const Navbar = () => {
                   >
                     Contact
                   </Link>
-                  
+                  {status !== "loading" && status === "authenticated" && (
+                    <div className="flex items-center">
+                      <button className="btn" onClick={() => signOut()}>
+                        Logout
+                      </button>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -82,7 +98,9 @@ const Navbar = () => {
               {/* Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" */}
               <Link
                 href="/"
-                className={`${router.pathname === '/' ? mobileActive : notMobileActive}`}
+                className={`${
+                  router.pathname === "/" ? mobileActive : notMobileActive
+                }`}
                 onClick={() => close()}
               >
                 Home
@@ -97,7 +115,11 @@ const Navbar = () => {
               </Link>
               <Link
                 href="/residence"
-                className={`${router.pathname === '/residence' ? mobileActive : notMobileActive}`}
+                className={`${
+                  router.pathname === "/residence"
+                    ? mobileActive
+                    : notMobileActive
+                }`}
                 onClick={() => close()}
               >
                 Residence
