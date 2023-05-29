@@ -4,15 +4,15 @@ const Contact = () => {
     return (
       <section id='contact' className="bg-white">
         
-        <div className="px-4 py-16 mx-auto my-8 max-w-7xl sm:px-6 lg:py-24 lg:px-8">
-        <h2 className="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">
-          Residence Descriprition
-        </h2>
+        <div className="px-4 py-12 mx-auto my-8 max-w-7xl sm:px-6 lg:py-24 lg:px-8">
           <div className="mt-24 divide-y-2 divide-gray-200">
             
             <div className="lg:grid lg:grid-cols-3 lg:gap-8">
                 
-              <h2 className="text-2xl font-extrabold text-gray-900 sm:text-3xl">Get in touch</h2>
+                <div className="relative">
+              <h2 className="text-2xl font-extrabold text-gray-900 sm:text-3xl before:content-[''] before:absolute before:-top-6 before:left-0 before:w-16 before:h-[2px] before:bg-primary">Get in touch</h2>
+
+                </div>
               <div className="grid grid-cols-1 gap-12 mt-8 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-12 lg:mt-0 lg:col-span-2">
                 <div>
                   <h3 className="text-lg font-medium leading-6 text-gray-900">Address</h3>

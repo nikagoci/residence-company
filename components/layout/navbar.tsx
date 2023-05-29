@@ -10,31 +10,33 @@ const Navbar = () => {
   const router = useRouter();
   const { status } = useSession();
 
+  // text-gray-900
+  // text-gray-500
   const active =
-    "inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900 border-b-2 border-primary";
+    "inline-flex items-center px-1 pt-1 text-sm font-medium text-purple border-b-2 border-light_purple";
   const notActive =
-    "inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 border-b-2 border-transparent hover:border-gray-300 hover:text-gray-700";
+    "inline-flex items-center px-1 pt-1 text-sm font-medium text-white border-b-2 border-transparent hover:border-light_purple hover:text-white";
 
   const mobileActive =
-    "block py-2 pl-3 pr-4 text-base font-medium border-l-4 border-primary text-primary bg-light_blue sm:pl-5 sm:pr-6";
+    "block py-2 pl-3 pr-4 text-white font-medium border-l-4 border-purple text-primary bg-light_purple sm:pl-5 sm:pr-6";
   const notMobileActive =
-    "block py-2 pl-3 pr-4 text-base font-medium text-gray-500 border-l-4 border-transparent hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 sm:pl-5 sm:pr-6";
+    "block py-2 pl-3 pr-4 text-white font-medium  border-l-4 border-transparent hover:bg-light_purple hover:border-purple sm:pl-5 sm:pr-6";
 
   return (
-    <Disclosure as="nav" className="shadow bg-base-200">
+    <Disclosure as="nav" className="absolute left-0 w-full top-4 ">
       {({ open, close }) => (
         <>
           <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-            <div className="flex justify-between h-16">
+            <div className="flex justify-between ">
               <div className="flex justify-between w-full">
                 <div className="flex items-center flex-shrink-0">
                   <Link href="/">
                     <Image
-                      className="block w-auto h-10 rounded-full"
+                      className="block w-auto h-16 rounded-full"
                       src="/images/logo.jpg"
                       alt="Turcvg"
-                      width={40}
-                      height={40}
+                      width={64}
+                      height={64}
                     />
                   </Link>
                 </div>
@@ -59,12 +61,8 @@ const Navbar = () => {
                   >
                     Home
                   </Link>
-                  <Link
-                    href="/#description"
-                    scroll={false}
-                    className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 border-b-2 border-transparent hover:border-gray-300 hover:text-gray-700"
-                  >
-                    Description
+                  <Link href="/#about" scroll={false} className={notActive}>
+                    About Us
                   </Link>
                   <Link
                     href="/residence"
@@ -74,11 +72,7 @@ const Navbar = () => {
                   >
                     Residence
                   </Link>
-                  <Link
-                    href="/#contact"
-                    scroll={false}
-                    className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 border-b-2 border-transparent hover:border-gray-300 hover:text-gray-700"
-                  >
+                  <Link href="/#contact" scroll={false} className={notActive}>
                     Contact
                   </Link>
                   {status !== "loading" && status === "authenticated" && (
@@ -93,9 +87,8 @@ const Navbar = () => {
             </div>
           </div>
 
-          <Disclosure.Panel className="md:hidden">
-            <div className="pt-2 pb-3 space-y-1">
-              {/* Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" */}
+          <Disclosure.Panel className="py-6 mt-2 bg-gray-700 md:hidden">
+            <div className="z-50 pt-2 pb-3 space-y-1">
               <Link
                 href="/"
                 className={`${
@@ -106,12 +99,12 @@ const Navbar = () => {
                 Home
               </Link>
               <Link
-                href="/#description"
+                href="/#about"
                 scroll={false}
-                className="block py-2 pl-3 pr-4 text-base font-medium text-gray-500 border-l-4 border-transparent hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 sm:pl-5 sm:pr-6"
+                className={notMobileActive}
                 onClick={() => close()}
               >
-                Description
+                About Us
               </Link>
               <Link
                 href="/residence"
@@ -127,11 +120,18 @@ const Navbar = () => {
               <Link
                 href="/#contact"
                 scroll={false}
-                className="block py-2 pl-3 pr-4 text-base font-medium text-gray-500 border-l-4 border-transparent hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 sm:pl-5 sm:pr-6"
+                className={notMobileActive}
                 onClick={() => close()}
               >
                 Contact
               </Link>
+              {status !== "loading" && status === "authenticated" && (
+                <div className="flex items-center px-4">
+                  <button className="btn" onClick={() => signOut()}>
+                    Logout
+                  </button>
+                </div>
+              )}
             </div>
           </Disclosure.Panel>
         </>

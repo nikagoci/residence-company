@@ -5,3 +5,7 @@
 *, html, body{
     scroll-behavior: smooth;
 }
+
+.header-height{
+    height: calc(100vh - 64px);
+}
