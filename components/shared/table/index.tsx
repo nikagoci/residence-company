@@ -96,22 +96,32 @@ const Table = ({ flats, loading }: Props) => {
             leaveFrom="opacity-100 translate-y-0"
             leaveTo="opacity-0 -translate-y-1"
           >
-            <Popover.Panel className="absolute inset-x-0 z-10 mt-2 transform shadow-lg ">
-              <div className="flex flex-col justify-around pt-5 overflow-x-auto border-t border-gray-200 gap-y-6 sm:gap-8">
-                <table className="w-full mb-0 overflow-visible bg-white rounded-2xl">
-                  <div className="bg-white h-96">
-                    <thead className="z-50 border-b ">
-                      <TopRow />
-                    </thead>
+            <Popover.Panel className="absolute inset-x-0 z-10 pt-4 translate-y-0 bg-white shadow-lg opacity-100 top-full ring-1 ring-gray-900/5 ">
+              <div className="px-6 py-6 mx-auto max-w-7xl">
+                <div className="flex w-full flex-colm max-h-96">
+                  <div className="w-full -my-2 overflow-auto ScrollChange">
+                    <div className="inline-block min-w-full py-2 pr-0 align-middle">
+                      <div className="border-b border-gray-200 shadow sm:rounded-lg">
+                        <table className="min-w-full divide-y divide-gray-200">
+                          <thead className="sticky top-0 z-50 bg-white border-b">
+                            <TopRow />
+                          </thead>
 
-                    <tbody className="bg-white h-96">
-                      {flats &&
-                        flats.map((flat, index) => (
-                          <SingleRow key={flat.flatNum} index={index} flat={flat} />
-                        ))}
-                    </tbody>
+                          <tbody className="overflow-y-auto bg-white divide-y divide-gray-200">
+                            {flats &&
+                              flats.map((flat, index) => (
+                                <SingleRow
+                                  key={flat.flatNum}
+                                  index={index}
+                                  flat={flat}
+                                />
+                              ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
                   </div>
-                </table>
+                </div>
               </div>
             </Popover.Panel>
           </Transition>

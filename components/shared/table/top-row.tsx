@@ -4,9 +4,9 @@ const filters = [
 
 const TopRow = () => {
   return (
-    <tr className="w-full">
+    <tr>
       {filters.map((filter, idx) => (
-        <th className="px-6 py-3 text-sm font-bold text-center sm:px-9 md:px-16 lg:px-20 " key={idx}> 
+        <th className="px-6 py-3 text-sm font-bold text-center " key={idx}> 
           {filter}
         </th>
       ))}

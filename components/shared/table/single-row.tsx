@@ -52,7 +52,7 @@ const SingleRow = ({ flat, index }: Props) => {
           m <sup className="-m-1 text-xs">2</sup>
         </span>
       </td>
-      <td className="px-6 py-4 text-sm font-normal text-center whitespace-nowrap">
+      <td className="px-6 py-6 text-sm font-normal text-center whitespace-nowrap">
         <p>
           3{" "}
           <span className="text-sm">
@@ -60,10 +60,10 @@ const SingleRow = ({ flat, index }: Props) => {
           </span>
         </p>
       </td>
-      <td className="px-6 py-4 text-sm font-normal text-center whitespace-nowrap">
+      <td className="px-6 py-6 text-sm font-normal text-center whitespace-nowrap">
         ${flat.price}
       </td>
-      <td className="px-6 py-4 text-xs font-medium text-center whitespace-nowrap">
+      <td className="px-6 py-6 text-sm font-normal text-center whitespace-nowrap">
         {flat.condition === Condition.sale ? (
           <button onClick={handlePageChange}>
             <svg
