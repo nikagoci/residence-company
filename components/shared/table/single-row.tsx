@@ -4,9 +4,10 @@ import { useRouter } from "next/router";
 
 type Props = {
   flat: Flat;
+  index: number
 };
 
-const SingleRow = ({ flat }: Props) => {
+const SingleRow = ({ flat, index }: Props) => {
   const { status } = useSession();
   const { push } = useRouter();
 
@@ -38,7 +39,7 @@ const SingleRow = ({ flat }: Props) => {
   };
 
   return (
-    <tr className="bg-white">
+    <tr className={`${index % 2 == 0 ? 'bg-white' : 'bg-[#EBF2FE]'}`}>
       <td className="px-6 py-6 text-sm font-normal text-center whitespace-nowrap">
         {flat.floor}
       </td>

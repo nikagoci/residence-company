@@ -120,7 +120,7 @@ const FloorPolygon = ({ floorNum }: Props) => {
             <h3>Area: {totalArea.toFixed(1)} sq.m</h3>
           </div>
         )}
-        <div className="absolute top-0 left-0 z-10 flex flex-col items-center justify-center w-full gap-y-6">
+        <div className="absolute left-0 z-10 flex flex-col items-center justify-center w-full md:top-0 -top-16 gap-y-6">
           <h3 className="text-3xl font-bold text-primary">Floor {floorNum}</h3>
           <div className="flex gap-x-4">
             <Link

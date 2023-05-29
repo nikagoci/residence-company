@@ -106,8 +106,8 @@ const Table = ({ flats, loading }: Props) => {
 
                     <tbody className="bg-white h-96">
                       {flats &&
-                        flats.map((flat) => (
-                          <SingleRow key={flat.flatNum} flat={flat} />
+                        flats.map((flat, index) => (
+                          <SingleRow key={flat.flatNum} index={index} flat={flat} />
                         ))}
                     </tbody>
                   </div>

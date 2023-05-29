@@ -13,7 +13,7 @@ const Navbar = () => {
   // text-gray-900
   // text-gray-500
   const active =
-    "inline-flex items-center px-1 pt-1 text-sm font-medium text-purple border-b-2 border-light_purple";
+    "inline-flex items-center px-1 pt-1 text-sm font-medium text-white border-b-2 border-light_purple";
   const notActive =
     "inline-flex items-center px-1 pt-1 text-sm font-medium text-white border-b-2 border-transparent hover:border-light_purple hover:text-white";
 
@@ -23,7 +23,7 @@ const Navbar = () => {
     "block py-2 pl-3 pr-4 text-white font-medium  border-l-4 border-transparent hover:bg-light_purple hover:border-purple sm:pl-5 sm:pr-6";
 
   return (
-    <Disclosure as="nav" className="absolute left-0 w-full top-4 ">
+    <Disclosure as="nav" className={`${router.pathname.includes('/residence') ? "bg-gray-400 py-4" : "absolute left-0 w-full top-4 "} `}>
       {({ open, close }) => (
         <>
           <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -41,7 +41,7 @@ const Navbar = () => {
                   </Link>
                 </div>
                 <div className="flex items-center justify-between mr-2 -ml-2 md:hidden">
-                  <Disclosure.Button className="inline-flex items-center justify-center p-2 text-gray-400 rounded-md hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                  <Disclosure.Button className="inline-flex items-center justify-center p-2 text-white rounded-md hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-purple">
                     <span className="sr-only">Open main menu</span>
                     {open ? (
                       <XIcon className="block w-6 h-6" aria-hidden="true" />
@@ -87,8 +87,8 @@ const Navbar = () => {
             </div>
           </div>
 
-          <Disclosure.Panel className="py-6 mt-2 bg-gray-700 md:hidden">
-            <div className="z-50 pt-2 pb-3 space-y-1">
+          <Disclosure.Panel className={` ${router.pathname.includes('/residence') ? 'bg-inherit' : 'bg-gray-700'} py-6 mt-2 md:hidden`}>
+            <div className="space-y-2 ">
               <Link
                 href="/"
                 className={`${
