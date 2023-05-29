@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ChangeEvent, FormEvent, useContext, useState } from "react";
+import { FormEvent, useContext, useState } from "react";
 
 import Select from "../shared/select";
 import SearchButton from "../shared/search-button";
@@ -13,12 +13,10 @@ type Props = {
 };
 
 type FilterValues = {
-  
     areaFrom: number;
     areaTo: number;
     priceFrom: number;
     priceTo: number;
-  
 };
 
 const Filter = ({ flats, loading }: Props) => {
@@ -67,7 +65,7 @@ const Filter = ({ flats, loading }: Props) => {
         <h4>Area:</h4>
         <div className="flex gap-x-4 md:gap-x-1 lg:gap-x-4">
           <Select
-            options={[50, 60, 70, 80, 90, 100]}
+            options={[40, 50, 60, 70, 80]}
             id="areaFrom"
             changeHandler={changeHandler}
           />
@@ -78,7 +76,7 @@ const Filter = ({ flats, loading }: Props) => {
             height={20}
           />
           <Select
-            options={[60, 70, 80, 90, 100, 150]}
+            options={[60, 80, 100, 120, 140]}
             id="areaTo"
             changeHandler={changeHandler}
           />
@@ -88,7 +86,7 @@ const Filter = ({ flats, loading }: Props) => {
         <h4>Price:</h4>
         <div className="flex gap-x-4 md:gap-x-1 lg:gap-x-4">
           <Select
-            options={[30000, 35000, 40000, 45000, 50000]}
+            options={[40000, 45000, 50000, 55000, 60000]}
             id="priceFrom"
             changeHandler={changeHandler}
           />
@@ -99,6 +97,7 @@ const Filter = ({ flats, loading }: Props) => {
             height={20}
           />
           <Select
+          
             options={[50000, 55000, 60000, 65000, 70000]}
             id="priceTo"
             changeHandler={changeHandler}

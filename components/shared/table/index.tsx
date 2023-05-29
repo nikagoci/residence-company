@@ -63,6 +63,8 @@ const Table = ({ flats, loading }: Props) => {
     );
   }
 
+  console.log(flats);
+
   return (
     <Popover className="relative z-10 md:static">
       {({ open }) => (
@@ -99,24 +101,32 @@ const Table = ({ flats, loading }: Props) => {
             <Popover.Panel className="absolute inset-x-0 z-10 pt-4 translate-y-0 bg-white shadow-lg opacity-100 top-full ring-1 ring-gray-900/5 ">
               <div className="px-6 py-6 mx-auto max-w-7xl">
                 <div className="flex w-full flex-colm max-h-96">
-                  <div className="w-full -my-2 overflow-auto ScrollChange">
+                  <div className="w-full -my-2 overflow-auto">
                     <div className="inline-block min-w-full py-2 pr-0 align-middle">
                       <div className="border-b border-gray-200 shadow sm:rounded-lg">
                         <table className="min-w-full divide-y divide-gray-200">
-                          <thead className="sticky top-0 z-50 bg-white border-b">
-                            <TopRow />
-                          </thead>
+                          {flats && flats.length > 0 && (
+                            <thead className="sticky top-0 z-50 bg-white border-b">
+                              <TopRow />
+                            </thead>
+                          )}
 
-                          <tbody className="overflow-y-auto bg-white divide-y divide-gray-200">
-                            {flats &&
-                              flats.map((flat, index) => (
+                          {flats && flats.length > 0 ? (
+                            <tbody className="overflow-y-auto bg-white divide-y divide-gray-200">
+                              {flats.map((flat, index) => (
                                 <SingleRow
                                   key={flat.flatNum}
                                   index={index}
                                   flat={flat}
                                 />
                               ))}
-                          </tbody>
+                            </tbody>
+                          ) : (
+                            <thead className="flex justify-center">
+                              <tr >
+                                <td className="text-2xl font-bold text-red-500">No information found, try other filters</td></tr>
+                            </thead>
+                          )}
                         </table>
                       </div>
                     </div>
