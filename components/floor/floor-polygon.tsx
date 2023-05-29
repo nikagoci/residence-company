@@ -81,7 +81,7 @@ const FloorPolygon = ({ floorNum }: Props) => {
               className={`${
                 disableButton === "second"
                   ? "bg-light_blue pointer-events-none"
-                  : "bg-primay active:scale-110"
+                  : "bg-primary active:scale-110"
               } p-4 text-white transition duration-300 rounded-full `}
             >
               <ArrowRightIcon className="w-4" />

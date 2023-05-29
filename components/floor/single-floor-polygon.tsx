@@ -19,7 +19,7 @@ const SingleFloorPolygon = ({
   const { push } = useRouter()
 
   if(status === 'loading') {
-    return <h1></h1>
+    return <></>
   }
   
 
@@ -38,7 +38,6 @@ const SingleFloorPolygon = ({
   }
 
   return (
-    <>
       <polygon
         points={flat.points}
         className={`${
@@ -56,7 +55,6 @@ const SingleFloorPolygon = ({
         onMouseLeave={handlePolygonLeave}
         onClick={handlePageChange}
       />
-    </>
   );
 };
 
