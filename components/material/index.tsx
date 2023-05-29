@@ -80,7 +80,7 @@ const Material = () => {
             </h4>
             <p className="max-w-sm text-xl font-semibold leading-8">
               High-quality energy-efficient building materials are used in the
-              construction of <span className="font-bold">TURCVG</span>{" "}
+              construction of <span className="font-bold">Elite Residence</span>{" "}
               projects.
             </p>
             <div className="flex gap-x-4">

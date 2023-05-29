@@ -10,8 +10,7 @@ const Navbar = () => {
   const router = useRouter();
   const { status } = useSession();
 
-  // text-gray-900
-  // text-gray-500
+
   const active =
     "inline-flex items-center px-1 pt-1 text-sm font-medium text-white border-b-2 border-light_purple";
   const notActive =
@@ -23,7 +22,7 @@ const Navbar = () => {
     "block py-2 pl-3 pr-4 text-white font-medium  border-l-4 border-transparent hover:bg-light_purple hover:border-purple sm:pl-5 sm:pr-6";
 
   return (
-    <Disclosure as="nav" className={`${router.pathname.includes('/residence') ? "bg-gray-400 py-4" : "absolute left-0 w-full top-4 "} `}>
+    <Disclosure as="nav" className={`${router.pathname.includes('/residence') ? "bg-gradient-to-br from-gray-900 to-gray-600  py-4" : "absolute left-0 w-full top-4 "} `}>
       {({ open, close }) => (
         <>
           <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -32,9 +31,9 @@ const Navbar = () => {
                 <div className="flex items-center flex-shrink-0">
                   <Link href="/">
                     <Image
-                      className="block w-auto h-16 rounded-full"
-                      src="/images/logo.jpg"
-                      alt="Turcvg"
+                      className="block w-auto h-[60px] rounded-full"
+                      src="/svgs/logo.svg"
+                      alt="Elite Residence"
                       width={64}
                       height={64}
                     />

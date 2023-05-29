@@ -39,7 +39,7 @@ const Contact = () => {
                   <dl className="mt-2 text-base text-gray-500">
                     <div className="flex gap-x-2">
                         <MailIcon className="w-6 h-auto" />
-                      <dd>turcvg@gmail.com</dd>
+                      <dd>eliteresidence@gmail.com</dd>
                     </div>
                   </dl>
                 </div>
@@ -48,7 +48,7 @@ const Contact = () => {
                   <dl className="mt-2 text-base text-gray-500">
                     <div className="flex gap-x-2">
                         <GlobeAltIcon className="w-6 h-auto" />
-                      <dd>https://turcvg.com</dd>
+                      <dd>https://eliteresidence.com</dd>
                     </div>
 
                   </dl>
