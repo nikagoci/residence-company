@@ -28,7 +28,6 @@ const Input = ({
   error,
 }: Props) => {
   return (
-    <>
       <div>
         <div className="relative">
           <input
@@ -51,7 +50,6 @@ const Input = ({
         </div>
         {error && <p className="max-w-[90%] text-red-500 absolute mt-2 text-xs ">{error.message}</p>}
       </div>
-    </>
   );
 };
 

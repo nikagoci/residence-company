@@ -63,8 +63,6 @@ const Table = ({ flats, loading }: Props) => {
     );
   }
 
-  console.log(flats);
-
   return (
     <Popover className="relative z-10 md:static">
       {({ open }) => (

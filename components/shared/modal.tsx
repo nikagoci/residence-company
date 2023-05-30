@@ -3,7 +3,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { XIcon } from "@heroicons/react/outline";
 import Image from "next/image";
 import { ApolloErrorOptions } from "@apollo/client/errors";
-import { Router, useRouter } from "next/router";
+import { useRouter } from "next/router";
 
 type Props = {
   openModal: boolean;

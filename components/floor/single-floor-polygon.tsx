@@ -18,11 +18,6 @@ const SingleFloorPolygon = ({
   const { status } = useSession()
   const { push } = useRouter()
 
-  if(status === 'loading') {
-    return <></>
-  }
-  
-
   const handlePageChange = () => {
       if(status === 'unauthenticated' && flat.condition !== Condition.sold){
         push({
