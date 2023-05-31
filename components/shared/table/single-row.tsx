@@ -1,6 +1,7 @@
 import { Condition } from "@/fakeData";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 type Props = {
   flat: Flat;
@@ -10,10 +11,17 @@ type Props = {
 const SingleRow = ({ flat, index }: Props) => {
   const { status } = useSession();
   const { push } = useRouter();
+  const [bedroomArea, setBedroomArea] = useState(0)
 
-  if (status === "loading") {
-    return <h1></h1>;
-  }
+  useEffect(() => {
+    let totalBedroomArea = 0;
+
+    flat.bedrooms.forEach(bedroom => {
+      totalBedroomArea += bedroom;
+    })
+
+    setBedroomArea(totalBedroomArea)
+  }, [flat])
 
   const handlePageChange = () => {
     if (status === "unauthenticated") {
@@ -54,7 +62,7 @@ const SingleRow = ({ flat, index }: Props) => {
       </td>
       <td className="px-6 py-6 text-sm font-normal text-center whitespace-nowrap">
         <p>
-          3{" "}
+          {bedroomArea.toFixed(1)}{" "}
           <span className="text-sm">
             m <sup className="-m-1 text-xs">2</sup>{" "}
           </span>

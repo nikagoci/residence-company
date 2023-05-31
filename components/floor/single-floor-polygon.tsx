@@ -44,7 +44,7 @@ const SingleFloorPolygon = ({
 
   const textPoints = [
     { x: 100, y: 500, flats: [1, 9, 17, 25, 33] },
-    { x: 240, y: 320, flats: [2, 10, 18, 26, 34] },
+    { x: 230, y: 320, flats: [2, 10, 18, 26, 34] },
     { x: 440, y: 320, flats: [3, 11, 19, 27, 35] },
     { x: 700, y: 320, flats: [4, 12, 20, 28, 36] },
     { x: 1000, y: 320, flats: [5, 13, 21, 29, 37] },
@@ -73,7 +73,7 @@ const SingleFloorPolygon = ({
         onClick={handlePageChange}
       />
       {flat.condition === Condition.sold &&
-        textPoints.map((textPoint, idx) => {
+        textPoints.map(textPoint => {
           if (textPoint.flats.includes(flat.flatNum)) {
             return (
               <text
