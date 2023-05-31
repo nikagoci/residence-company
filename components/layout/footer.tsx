@@ -1,12 +1,12 @@
+import { useTranslation } from "next-i18next";
+
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
+  const { t } = useTranslation();
 
   return (
-    <footer className="p-4 footer footer-center bg-[#f8f8f8] text-base-content">
+    <footer className="py-10 footer footer-center bg-[#f8f8f8] text-lg">
       <div>
-        <p>
-          Copyright © {currentYear} - All right reserved by Elite Residence Industries Ltd
-        </p>
+        <p>{t("footer.title")}</p>
       </div>
     </footer>
   );

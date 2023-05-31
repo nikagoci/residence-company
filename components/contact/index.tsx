@@ -7,7 +7,7 @@ import {
 import { useTranslation } from "next-i18next";
 
 const Contact = () => {
-  const { t } = useTranslation("common");
+  const { t } = useTranslation();
 
   return (
     <section id="contact" className="bg-white">

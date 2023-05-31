@@ -1,100 +1,104 @@
 import { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { useTranslation } from "next-i18next";
 import { ArrowRightIcon, ArrowLeftIcon } from "@heroicons/react/outline";
-import { Swiper as SwiperType} from 'swiper/types'
+import { Swiper as SwiperType } from "swiper/types";
 
 import SingleMaterial from "./single-material";
 
 import "swiper/css";
 
-const MATERIALS = [
-  {
-    title: 'Low-mission glass',
-    image: '/images/material1.jpg'
-  },
-  {
-    title: 'Itong block',
-    image: '/images/material2.jpg'
-  },
-  {
-    title: 'Heidelberg concrete',
-    image: '/images/material3.jpg'
-  },
-  {
-    title: 'HPL Panels',
-    image: '/images/material4.jpeg'
-  },
-  {
-    title: 'Caparol paint',
-    image: '/images/material5.jpg'
-  },
-  {
-    title: 'Caparol paint',
-    image: '/images/material6.jpg'
-  },
-]
-
-
 const Material = () => {
   const swiperRef = useRef<SwiperType | null>(null);
-  const [disableButton, setDisableButton] = useState('first')
+  const [disableButton, setDisableButton] = useState("first");
+  const { t } = useTranslation();
+
+  const MATERIALS = [
+    {
+      title: t("residence.material.materials.low-mission-glass"),
+      image: "/images/material1.jpg",
+    },
+    {
+      title: t("residence.material.materials.itong-block"),
+      image: "/images/material2.jpg",
+    },
+    {
+      title: t("residence.material.materials.heidelberg-concrete"),
+      image: "/images/material3.jpg",
+    },
+    {
+      title: t("residence.material.materials.hpl-panels"),
+      image: "/images/material4.jpeg",
+    },
+    {
+      title: t("residence.material.materials.caparol-paint"),
+      image: "/images/material5.jpg",
+    },
+    {
+      title: t("residence.material.materials.caparol-paint"),
+      image: "/images/material6.jpg",
+    },
+  ];
 
   const handleSlidePrev = () => {
-    swiperRef.current?.slidePrev()
-
-  }
+    swiperRef.current?.slidePrev();
+  };
 
   const handleSlideNext = () => {
-    swiperRef.current?.slideNext()
-
-  }
+    swiperRef.current?.slideNext();
+  };
 
   const handleButtonDisable = (swiper: SwiperType) => {
-    if(swiper.currentBreakpoint === '0'){
-      if(swiper.realIndex === 0) {
-        setDisableButton('first')
-      } else if(swiper.realIndex === 3) {
-        setDisableButton('second')
+    if (swiper.currentBreakpoint === "0") {
+      if (swiper.realIndex === 0) {
+        setDisableButton("first");
+      } else if (swiper.realIndex === 3) {
+        setDisableButton("second");
       } else {
-        setDisableButton('')
+        setDisableButton("");
       }
     } else {
-      if(swiper.realIndex === 0) {
-        setDisableButton('first')
-      } else if(swiper.realIndex === 2) {
-        setDisableButton('second')
+      if (swiper.realIndex === 0) {
+        setDisableButton("first");
+      } else if (swiper.realIndex === 2) {
+        setDisableButton("second");
       } else {
-        setDisableButton('')
+        setDisableButton("");
       }
     }
-  }
+  };
 
-  
   return (
     <section className="py-16">
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div className="flex flex-col">
           <div className="mb-8 space-y-6 basis-1/3">
             <h4 className="text-5xl font-bold leading-tight">
-              Building Materials
+              {t("residence.material.building-materials")}
             </h4>
-            <p className="max-w-sm text-xl font-semibold leading-8">
-              High-quality energy-efficient building materials are used in the
-              construction of <span className="font-bold">Elite Residence</span>{" "}
-              projects.
+            <p className="max-w-sm text-xl font-semibold leading-8 md:max-w-3xl">
+              {t("residence.material.header")}
             </p>
             <div className="flex gap-x-4">
               <button
-                className={`${disableButton === 'first' ? 'bg-light_blue' : 'bg-primary active:scale-110'} p-4 text-white transition duration-300 rounded-full `}
+                className={`${
+                  disableButton === "first"
+                    ? "bg-light_blue"
+                    : "bg-primary active:scale-110"
+                } p-4 text-white transition duration-300 rounded-full `}
                 onClick={handleSlidePrev}
-                disabled={disableButton === 'first'}
+                disabled={disableButton === "first"}
               >
                 <ArrowLeftIcon className="w-4" />
               </button>
               <button
-                className={`${disableButton === 'second' ? 'bg-light_blue' : 'bg-primary active:scale-110'} p-4 text-white transition duration-300 rounded-full `}
+                className={`${
+                  disableButton === "second"
+                    ? "bg-light_blue"
+                    : "bg-primary active:scale-110"
+                } p-4 text-white transition duration-300 rounded-full `}
                 onClick={handleSlideNext}
-                disabled={disableButton === 'second'}
+                disabled={disableButton === "second"}
               >
                 <ArrowRightIcon className="w-4" />
               </button>
@@ -104,11 +108,11 @@ const Material = () => {
             <Swiper
               breakpoints={{
                 0: {
-                  slidesPerView: 3
+                  slidesPerView: 3,
                 },
                 1024: {
-                  slidesPerView: 4
-                }
+                  slidesPerView: 4,
+                },
               }}
               spaceBetween={40}
               slidesPerView={3}
@@ -116,9 +120,12 @@ const Material = () => {
               onSlideChange={handleButtonDisable}
               ref={swiperRef as any}
             >
-              {MATERIALS.map((material,idx) => (
+              {MATERIALS.map((material, idx) => (
                 <SwiperSlide key={idx}>
-                  <SingleMaterial title={material.title} image={material.image} />
+                  <SingleMaterial
+                    title={material.title}
+                    image={material.image}
+                  />
                 </SwiperSlide>
               ))}
             </Swiper>

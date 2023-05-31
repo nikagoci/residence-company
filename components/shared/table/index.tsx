@@ -4,6 +4,7 @@ import { Popover, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
 import SingleRow from "./single-row";
 import TopRow from "./top-row";
+import { useTranslation } from "next-i18next";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
@@ -15,6 +16,8 @@ type Props = {
 };
 
 const Table = ({ flats, loading }: Props) => {
+  const { t } = useTranslation();
+
   if (loading) {
     return (
       <Popover className="relative z-10 md:static">
@@ -75,7 +78,7 @@ const Table = ({ flats, loading }: Props) => {
                   "group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 )}
               >
-                <span>Every Flat</span>
+                <span>{t("residence.filter.every-flat")}</span>
                 <ChevronDownIcon
                   className={classNames(
                     open ? "text-gray-600" : "text-gray-400",
@@ -121,8 +124,11 @@ const Table = ({ flats, loading }: Props) => {
                             </tbody>
                           ) : (
                             <thead className="flex justify-center">
-                              <tr >
-                                <td className="text-2xl font-bold text-red-500">No information found, try other filters</td></tr>
+                              <tr>
+                                <td className="text-2xl font-bold text-red-500">
+                                  No information found, try other filters
+                                </td>
+                              </tr>
                             </thead>
                           )}
                         </table>

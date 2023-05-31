@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useTranslation } from "next-i18next";
 
 const AboutUs = () => {
-  const { t } = useTranslation("common");
+  const { t } = useTranslation();
 
   return (
     <section className="py-32 bg-[#f8f8f8]" id="about">

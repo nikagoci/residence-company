@@ -6,11 +6,12 @@ import { signOut, useSession } from "next-auth/react";
 import { Disclosure } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import LangSwitcher from "../shared/lang-switcher";
+import { useTranslation } from "next-i18next";
 
 const Navbar = () => {
   const router = useRouter();
   const { status } = useSession();
-
+  const {t} = useTranslation()
 
   const active =
     "inline-flex items-center px-1 pt-1 text-sm font-medium text-white border-b-2 border-light_purple";
@@ -59,27 +60,27 @@ const Navbar = () => {
                       router.pathname === "/" ? active : notActive
                     }`}
                   >
-                    Home
+                    {t("navbar.home")}
                   </Link>
                   <Link href="/#about" scroll={false} className={notActive}>
-                    About Us
+                    {t("navbar.about")}
                   </Link>
                   <Link
                     href="/residence"
                     className={`${
-                      router.pathname.includes('/residence') || router.pathname.includes('/dashboard') ? active : notActive
+                      router.pathname.includes('/residence') ? active : notActive
                     }`}
                   >
-                    Residence
+                    {t("navbar.residence")}
                   </Link>
                   <Link href="/#contact" scroll={false} className={notActive}>
-                    Contact
+                    {t("navbar.contact")}
                   </Link>
                   <LangSwitcher />
                   {status !== "loading" && status === "authenticated" && (
                     <div className="flex items-center">
                       <button className="btn" onClick={() => signOut()}>
-                        Logout
+                        {t("navbar.logout")}
                       </button>
                     </div>
                   )}
@@ -97,7 +98,7 @@ const Navbar = () => {
                 }`}
                 onClick={() => close()}
               >
-                Home
+                {t("navbar.home")}
               </Link>
               <Link
                 href="/#about"
@@ -105,18 +106,18 @@ const Navbar = () => {
                 className={notMobileActive}
                 onClick={() => close()}
               >
-                About Us
+                {t("navbar.about")}
               </Link>
               <Link
                 href="/residence"
                 className={`${
-                  router.pathname.includes('/residence') || router.pathname.includes('/dashboard')
+                  router.pathname.includes('/residence')
                     ? mobileActive
                     : notMobileActive
                 }`}
                 onClick={() => close()}
               >
-                Residence
+                {t("navbar.residence")}
               </Link>
               <Link
                 href="/#contact"
@@ -124,12 +125,12 @@ const Navbar = () => {
                 className={notMobileActive}
                 onClick={() => close()}
               >
-                Contact
+                {t("navbar.contact")}
               </Link>
               {status !== "loading" && status === "authenticated" && (
                 <div className="flex items-center px-4">
                   <button className="btn" onClick={() => signOut()}>
-                    Logout
+                  {t("navbar.logout")}
                   </button>
                 </div>
               )}

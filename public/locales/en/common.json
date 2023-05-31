@@ -17,5 +17,63 @@
       "email": "Email Address",
       "website": "Website"
     }
+  },
+  "navbar": {
+    "home": "Home",
+    "about": "About Us",
+    "residence": "Residence",
+    "contact": "Contact",
+    "logout": "LOGOUT"
+  },
+  "footer": {
+    "title": "Copyright © 2023 - All right reserved by Elite Residence Industries Ltd"
+  },
+  "dashboard": {
+    "stats": {
+      "info": "Last 30 days",
+      "flats-sold": "Flats Sold",
+      "total-income": "Total Income",
+      "demandable-floor": "Demandable Floor"
+    },
+    "chart": {
+      "total": "Flats Sold By Floor",
+      "sold-flats": "Sold Flats",
+      "total-flats": "Total Flats",
+      "1-floor": "st Floor",
+      "2-floor": "nd Floor",
+      "3-floor": "rd Floor",
+      "4-floor": "th Floor",
+      "5-floor": "th Floor"
+    }
+  },
+  "residence": {
+    "title": "Choose Your House",
+    "filter": {
+      "search-flats": "Searching Flats",
+      "area": "area",
+      "price": "price",
+      "search": "SEARCH",
+      "every-flat": "Every Flat",
+      "table": {
+        "floor": "Floor",
+        "flat": "Flat",
+        "area": "Area",
+        "bedroom": "Bedroom",
+        "price": "Price",
+        "see": "See"
+      }
+    },
+    "paragraph": "Rivertown A new premium class complex is an exquisitely designed 5-storey residential building. The complex is located in the prestigious area and is distinguished by its multi-functionality. Everything here is tailored to the comfort of residents: an outdoor pool and spa for relaxation, a fitness center and sports court for healthy living, lounge and relaxation spaces for relaxation, 5,000 sq.m. Green yard. For even more convenience, the Rivertown area housed cafes, supermarkets and a pharmacy. In the construction of a residential house, the highest quality, environmentally friendly, energy-efficient building block of the German brand YTONG is used. Itong block maintains temperature, saves 40% energy and reduces utility bills.",
+    "material": {
+      "building-materials": "Building Materials",
+      "header": "High-quality energy-efficient building materials are used in the construction of Elite Residence projects.",
+      "materials": {
+        "low-mission-glass": "Low-mission Glass",
+        "itong-block": "Itong Block",
+        "heidelberg-concrete": "Heidelberg Concrete",
+        "hpl-panels": "HPL Panels",
+        "caparol-paint": "Caparol Paint"
+      }
+    }
   }
 }

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useTranslation } from "next-i18next";
 
 const Hero = () => {
-  const { t } = useTranslation("common");
+  const { t } = useTranslation();
 
   return (
     <div className="text-white h-screen bg-[url('/images/background.jpg')] bg-no-repeat bg-cover">
