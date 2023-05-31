@@ -5,6 +5,7 @@ import { signOut, useSession } from "next-auth/react";
 
 import { Disclosure } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
+import LangSwitcher from "../shared/lang-switcher";
 
 const Navbar = () => {
   const router = useRouter();
@@ -74,6 +75,7 @@ const Navbar = () => {
                   <Link href="/#contact" scroll={false} className={notActive}>
                     Contact
                   </Link>
+                  <LangSwitcher />
                   {status !== "loading" && status === "authenticated" && (
                     <div className="flex items-center">
                       <button className="btn" onClick={() => signOut()}>

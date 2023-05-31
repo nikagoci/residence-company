@@ -5,8 +5,9 @@ import Layout from "@/components/layout";
 import { ApolloProvider } from "@apollo/client/react";
 import client from "@/libs/graphql/provider";
 import { SessionProvider } from "next-auth/react";
+import { appWithTranslation } from "next-i18next";
 
-export default function App({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps }: AppProps) {
   return (
     <SessionProvider>
       <ApolloProvider client={client}>
@@ -17,3 +18,5 @@ export default function App({ Component, pageProps }: AppProps) {
     </SessionProvider>
   );
 }
+
+export default appWithTranslation(App)
