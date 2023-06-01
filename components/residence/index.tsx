@@ -25,7 +25,7 @@ const Residence = () => {
   });
 
   if(error){
-    return <h1>error</h1>
+    return <h1>{t("error")}</h1>;
   }
 
   return (

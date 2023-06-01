@@ -89,7 +89,7 @@ const UpdateForm = ({
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="grid grid-cols-2 gap-12 py-6 text-sm font-bold">
+      <div className={`${locale === 'en' ? "text-lg" : "text-xs"} grid grid-cols-2 gap-12 py-6 font-bold`}>
         <div className="flex items-center justify-start gap-x-3">
           <label htmlFor="condition">{t("floor.update-modal.form.condition")}:</label>
           <Select

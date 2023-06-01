@@ -98,7 +98,8 @@
       "floor": "Floor",
       "flat": "Flat",
       "area": "Area",
-      "sold": "SOLD"
+      "sold": "SOLD",
+      "left": "Left"
     },
     "update-modal": {
       "title": "Rivertown Residence",
@@ -117,5 +118,6 @@
       },
       "submit": "submit"
     }
-  }
+  },
+  "error": "Error"
 }

@@ -2,6 +2,7 @@ import { useState } from "react";
 import Image from "next/image";
 
 import SingleResidencePolygon from "./single-residence-polygon";
+import { useTranslation } from "next-i18next";
 
 const POLYGONS = [
   {
@@ -37,6 +38,7 @@ type Props = {
 const ResidencePolygon = ({ leftFlatInfo, loading } : Props) => {
   const [hoveredPolygon, setHoveredPolygon] = useState<string | null>(null);
   const [leftFlats, setLeftFlats] = useState<null | number>(null);
+  const {t} = useTranslation()
 
   if (loading) {
     return (
@@ -68,8 +70,6 @@ const ResidencePolygon = ({ leftFlatInfo, loading } : Props) => {
     setHoveredPolygon(null);
   };
 
-  console.log(leftFlats);
-
   return (
     <div className="relative flex justify-center w-full h-full">
       <div className="relative w-[100%] lg:w-[80%] h-full">
@@ -86,11 +86,11 @@ const ResidencePolygon = ({ leftFlatInfo, loading } : Props) => {
               leftFlats === 0
             } absolute px-6 py-2 text-xs font-bold text-white sm:text-sm bg-primary top-4 right-4 rounded-xl `}
           >
-            <h3>{hoveredPolygon} Floor</h3>
+            <h3>{hoveredPolygon} {t("floor.flats.floor")}</h3>
             <h3 className={`${leftFlats === 0 ? "text-red-500" : ""}`}>
               {leftFlats === 0
                 ? "Every Flat Is Sold"
-                : `Left: ${leftFlats} Flat`}
+                : `${t("floor.flats.left")}: ${leftFlats} ${t("floor.flats.flat")}`}
             </h3>
           </div>
         )}

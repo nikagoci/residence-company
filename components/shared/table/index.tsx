@@ -55,7 +55,7 @@ const Table = ({ flats, loading }: Props) => {
               <Popover.Panel className="absolute inset-x-0 z-10 mt-2 transform shadow-lg ">
                 <div className="flex flex-col h-[200px] z-20 justify-around pt-5 overflow-x-auto border-t border-gray-200 gap-y-6 sm:gap-8">
                   <div className="z-50 flex items-center justify-center">
-                    <button className="btn loading">loading</button>
+                    <button className="btn loading"></button>
                   </div>
                 </div>
               </Popover.Panel>

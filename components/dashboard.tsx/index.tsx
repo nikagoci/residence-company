@@ -3,6 +3,7 @@ import Stats from "./stats";
 import Chart from "./chart";
 import { useQuery } from "@apollo/client";
 import { FLAT_STATISTIC } from "@/libs/graphql/queries";
+import { useTranslation } from "next-i18next";
 
 type FlatStatistic = {
   FlatStatistic: {
@@ -20,6 +21,7 @@ type FlatStatistic = {
 
 const Dashboard = () => {
   const { data, loading, error } = useQuery<FlatStatistic>(FLAT_STATISTIC);
+  const {t} = useTranslation()
 
   if (!data || loading) {
     return (
@@ -30,7 +32,7 @@ const Dashboard = () => {
   }
 
   if (error) {
-    return <h1>error</h1>;
+    return <h1>{t("error")}</h1>;
   }
 
   return (

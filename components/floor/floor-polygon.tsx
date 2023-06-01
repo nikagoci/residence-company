@@ -98,7 +98,7 @@ const FloorPolygon = ({ floorNum }: Props) => {
   }
 
   if (error) {
-    return <h1>error</h1>;
+    return <h1>{t("error")}</h1>;
   }
 
   const handlePolygonHover = (polygonId: number) => {
@@ -122,7 +122,7 @@ const FloorPolygon = ({ floorNum }: Props) => {
         {hoveredPolygon && (
           <div className="absolute right-0 px-6 py-2 text-xs font-bold text-white lg:top-14 xl:top-24 top-4 sm:text-sm bg-primary rounded-xl ">
             <h3>{t("floor.flats.flat")}: {hoveredPolygon}</h3>
-            <h3>{t("floor.flats.area")}: {totalArea.toFixed(1)} sq.m</h3>
+            <h3>{t("floor.flats.area")}: {totalArea.toFixed(1)} {t("floor.modal.description.metric")}</h3>
           </div>
         )}
         <div className="absolute left-0 z-10 flex flex-col items-center justify-center w-full md:top-0 -top-16 gap-y-6">
