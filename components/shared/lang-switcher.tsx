@@ -3,7 +3,11 @@ import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/outline";
 
-export default function LangSwitcher() {
+type Props = {
+  mobileView?: boolean
+}
+
+export default function LangSwitcher({mobileView}: Props) {
   const [active, setActive] = useState("en");
   const [showMenu, setShowMenu] = useState(false);
   const router = useRouter();
@@ -17,7 +21,10 @@ export default function LangSwitcher() {
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (langSwitcherRef.current && !langSwitcherRef.current.contains(event.target as Node)) {
+      if (
+        langSwitcherRef.current &&
+        !langSwitcherRef.current.contains(event.target as Node)
+      ) {
         setShowMenu(false);
       }
     };
@@ -31,36 +38,50 @@ export default function LangSwitcher() {
 
   return (
     <>
-        <div ref={langSwitcherRef} className="relative z-30 p-2 rounded bg-slate-50">
-          <div
-            className="flex items-center justify-center space-x-1 cursor-pointer"
-            onClick={() => setShowMenu((prev) => !prev)}
-          >
-            {active === "en" ? <span >EN</span> : <span >GE</span>}
-            {!showMenu ? (
-              <ChevronDownIcon className="w-[20px] h-auto" />
-            ) : (
-              <ChevronUpIcon className="w-[20px] h-auto" />
-            )}
-          </div>
-          {showMenu && (
-            <div
-              className={`${
-                active === "ka" ? "flex-col" : "flex-col-reverse"
-              } absolute flex items-center justify-center w-full py-4 -translate-x-1/2 border rounded gap-y-4 bg-slate-50 -bottom-[105px] left-1/2`}
-            >
-              {router.locales &&
-                router.locales.map((locale) => (
-                  <span
-                    key={locale}
-                    className={`fi ${locale === 'en' ? 'fi-us' : 'fi-ge'} cursor-pointer w-full h-7 `}
-                    onClick={() => handleChangeLang(locale)}
-                  >
-                    </span>
-                ))}
-            </div>
+      <div
+        ref={langSwitcherRef}
+        className='relative flex p-2 rounded bg-none'
+      >
+        <div
+          className={`${mobileView ? 'mb-2' : ""} flex items-center justify-center space-x-2 cursor-pointer`}
+          onClick={() => setShowMenu((prev) => !prev)}
+        >
+          {active === "en" ? (
+            <Image
+              src="/svgs/usa.svg"
+              className="h-auto w-7"
+              alt="usa"
+              width={60}
+              height={45}
+            />
+          ) : (
+            <Image
+              src="/svgs/georgia.svg"
+              className="w-6 h-auto"
+              alt="georgia"
+              width={60}
+              height={45}
+            />
+          )}
+          {!showMenu ? (
+            <ChevronDownIcon className="w-[20px] h-auto text-white" />
+          ) : (
+            <ChevronUpIcon className="w-[20px] h-auto text-white" />
           )}
         </div>
+        {showMenu && (
+          <div
+            className={`${
+              active === "ka" ? "flex-col" : "flex-col-reverse"
+            } absolute flex items-center justify-center w-full py-4 -translate-x-1/2 border rounded gap-y-4 bg-slate-50 -bottom-[105px] left-1/2`}
+          >
+            {router.locales &&
+              router.locales.map((locale) => (
+                <Image key={locale} src={`/svgs/${locale === 'en' ? "usa.svg" : "georgia.svg"}`} onClick={() => handleChangeLang(locale)} className="w-10 h-auto cursor-pointer" alt='georgia' width={60} height={45} />
+              ))}
+          </div>
+        )}
+      </div>
     </>
   );
 }

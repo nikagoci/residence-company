@@ -127,6 +127,9 @@ const Navbar = () => {
               >
                 {t("navbar.contact")}
               </Link>
+              <div className="pl-4 w-[90px]">
+                <LangSwitcher mobileView />
+              </div>
               {status !== "loading" && status === "authenticated" && (
                 <div className="flex items-center px-4">
                   <button className="btn" onClick={() => signOut()}>
