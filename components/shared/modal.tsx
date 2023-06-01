@@ -4,6 +4,7 @@ import { XIcon } from "@heroicons/react/outline";
 import Image from "next/image";
 import { ApolloErrorOptions } from "@apollo/client/errors";
 import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
 
 type Props = {
   openModal: boolean;
@@ -17,6 +18,7 @@ const Modal = ({ openModal, setOpenModal, flat, error, loading }: Props) => {
   const [totalArea, setTotalArea] = useState(0);
   const [totalBalconyArea, setTotalBalconyArea] = useState(0);
   const {push} = useRouter()
+  const { t } = useTranslation()
 
   useEffect(() => {
     let balconyArea = 0;
@@ -141,12 +143,12 @@ const Modal = ({ openModal, setOpenModal, flat, error, loading }: Props) => {
                     as="h3"
                     className="text-xl font-medium leading-6 text-gray-900"
                   >
-                    Rivertown Residence
+                    {t("floor.modal.title")}
                   </Dialog.Title>
                   <div className="flex justify-center mt-2 font-semibold text-md text-primary breadcrumbs">
                     <ul>
-                      <li>Floor {flat.floor}</li>
-                      <li>Flat {flat.flatNum}</li>
+                      <li>{t("floor.modal.floor")} {flat.floor}</li>
+                      <li>{t("floor.modal.flat")} {flat.flatNum}</li>
                     </ul>
                   </div>
                 </div>
@@ -162,49 +164,49 @@ const Modal = ({ openModal, setOpenModal, flat, error, loading }: Props) => {
               </div>
               <div className="flex flex-col py-6 text-lg font-bold gap-y-2">
                 <div className="flex gap-x-8">
-                  <h4>Total Area:</h4>
-                  <h5>{totalArea} sq.m</h5>
+                  <h4>{t("floor.modal.description.total-area")}:</h4>
+                  <h5>{totalArea} {t("floor.modal.description.metric")}</h5>
                 </div>
                 <div className="flex gap-x-8">
-                  <h4>Living Area:</h4>
-                  <h5>{flat.livingArea} sq.m</h5>
+                  <h4>{t("floor.modal.description.living-area")}:</h4>
+                  <h5>{flat.livingArea} {t("floor.modal.description.metric")}</h5>
                 </div>
                 <div className="flex gap-x-8">
                   <h4>
-                    {flat.balconies.length > 1 ? "Balconies" : "Balcony"} Area:
+                    {flat.balconies.length > 1 ? t("floor.modal.description.balconies-area") : t("floor.modal.description.balcony-area") }:
                   </h4>
-                  <h5>{totalBalconyArea} sq.m</h5>
+                  <h5>{totalBalconyArea} {t("floor.modal.description.metric")}</h5>
                 </div>
                 <div className="flex gap-x-8 ">
-                  <h4>Price</h4>
+                  <h4>{t("floor.modal.description.price")}:</h4>
                   <h5>{flat.price} $</h5>
                 </div>
                 <div className="grid grid-cols-2 gap-4 mt-4 font-normal">
                   {flat.bedrooms.map((bedroom, idx) => (
                     <div key={idx}>
-                      <h4>Bedroom:</h4>
-                      <h5 className="text-primary">{bedroom} sq.m</h5>
+                      <h4>{t("floor.modal.description.bedroom")}:</h4>
+                      <h5 className="text-primary">{bedroom} {t("floor.modal.description.metric")}</h5>
                     </div>
                   ))}
                   {flat.wetPoints.map((wetPoint, idx) => (
                     <div key={idx}>
-                      <h4>Wet point:</h4>
-                      <h5 className="text-primary">{wetPoint} sq.m</h5>
+                      <h4>{t("floor.modal.description.wet-point")}:</h4>
+                      <h5 className="text-primary">{wetPoint} {t("floor.modal.description.metric")}</h5>
                     </div>
                   ))}
                   <div>
-                    <h4>Balcony Quantity</h4>
+                    <h4>{t("floor.modal.description.balcony-quantity")}</h4>
                     <h5 className="text-primary">{flat.balconies.length}</h5>
                   </div>
                 </div>
               </div>
-              <div className="mt-5 sm:mt-6">
+              <div className="flex justify-center mt-5 sm:mt-6">
                 <button
                   type="button"
-                  className="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white border border-transparent rounded-md shadow-sm bg-light_purple hover:bg-purple focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple sm:text-sm"
+                  className="inline-flex justify-center px-6 py-2 text-lg font-medium text-white border border-transparent rounded-md shadow-sm bg-light_purple hover:bg-purple focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple"
                   onClick={() => push('/#contact')}
                 >
-                  Contact Us
+                  {t("floor.modal.contact")}
                 </button>
               </div>
             </div>

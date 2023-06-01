@@ -75,5 +75,47 @@
         "caparol-paint": "Caparol Paint"
       }
     }
+  },
+  "floor": {
+    "modal": {
+      "title": "Rivertown Residence",
+      "floor": "Floor",
+      "flat": "Flat",
+      "description": {
+        "total-area": "Total Area",
+        "price": "Price",
+        "balcony-area": "Balcony Area",
+        "balconies-area": "Balconies Area",
+        "metric": "sq.m",
+        "living-area": "Living Area",
+        "bedroom": "Bedroom",
+        "wet-point": "Wet Point",
+        "balcony-quantity": "Balcony Quantity"
+      },
+      "contact": "Contact Us"
+    },
+    "flats": {
+      "floor": "Floor",
+      "flat": "Flat",
+      "area": "Area",
+      "sold": "SOLD"
+    },
+    "update-modal": {
+      "title": "Rivertown Residence",
+      "floor": "Floor",
+      "flat": "Flat",
+      "add-balcony": "ADD BALCONY",
+      "add-bedroom": "ADD BEDROOM",
+      "add-wetpoint": "ADD WET POINT",
+      "form": {
+        "condition": "Condition",
+        "price": "Price",
+        "balcony": "Balcony",
+        "wetpoint": "Wet Point",
+        "bedroom": "Bedroom",
+        "living-area": "Living Area"
+      },
+      "submit": "submit"
+    }
   }
 }

@@ -3,6 +3,8 @@ import { useQuery } from "@apollo/client";
 import { Dialog, Transition } from "@headlessui/react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { GetServerSideProps } from "next";
 
 import Floor from "@/components/floor";
 import { GET_SINGLE_FLAT } from "@/libs/graphql/queries";
@@ -104,3 +106,15 @@ const SingeFloor = () => {
 };
 
 export default SingeFloor;
+
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
+  if (locale) {
+    return {
+      props: {
+        ...(await serverSideTranslations(locale, ["common"])),
+      },
+    };
+  }
+
+  throw new Error("Local not found");
+};

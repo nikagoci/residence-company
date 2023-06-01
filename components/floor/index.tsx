@@ -5,6 +5,7 @@ type Props = {
 }
 
 const Floor = ({floorNum}: Props) => {
+
   return (
     <section className="py-16">
       <div className="flex flex-col items-center">

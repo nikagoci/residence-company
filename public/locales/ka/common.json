@@ -50,14 +50,14 @@
     "title": "აირჩიეთ თქვენი სახლი",
     "filter": {
       "search-flats": "მოძებნეთ ბინები",
-      "area": "ფართობი",
+      "area": "ფართი",
       "price": "ფასი",
       "search": "ძებნა",
       "every-flat": "ყველა ბინა",
       "table": {
         "floor": "სართული",
         "flat": "ბინა",
-        "area": "ფართობი",
+        "area": "ფართი",
         "bedroom": "საძინებელი",
         "price": "ფასი",
         "see": "ნახვა"
@@ -74,6 +74,48 @@
         "hpl-panels": "HPL პანელები",
         "caparol-paint": "კაპაროლის საღებავი"
       }
+    }
+  },
+  "floor": {
+    "modal": {
+      "title": "Rivertown_ის კორპუსი",
+      "floor": "სართული",
+      "flat": "ბინა",
+      "description": {
+        "total-area": "ჯამური ფართი",
+        "price": "ფასი",
+        "balcony-area": "აივინის ფართი",
+        "balconies-area": "აივნების ფართი",
+        "metric": "კვ.მ",
+        "living-area": "საცხოვრებელი ფართი",
+        "bedroom": "საძინებელი",
+        "wet-point": "სველი წერტილი",
+        "balcony-quantity": "აივნების რაოდენობა"
+      },
+      "contact": "დაგვიკავშირდით"
+    },
+    "flats": {
+      "floor": "სართული",
+      "flat": "ბინა",
+      "area": "ფართი",
+      "sold": "გაყიდულია"
+    },
+    "update-modal": {
+      "title": "Rivertown_ის კორპუსი",
+      "floor": "სართული",
+      "flat": "ბინა",
+      "add-balcony": "დაამატეთ აივანი",
+      "add-bedroom": "დაამატეთ საძინებელი",
+      "add-wetpoint": "დაამატეთ სველი წერტილი",
+      "form": {
+        "condition": "მდგომარეობა",
+        "price": "ფასი",
+        "balcony": "აივანი",
+        "wetpoint": "სველი წერტილი",
+        "bedroom": "საძინებელი",
+        "living-area": "საცხოვრებელი ფართი"
+      },
+      "submit": "დადასტურება"
     }
   }
 }

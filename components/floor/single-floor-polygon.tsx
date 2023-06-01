@@ -1,5 +1,6 @@
 import { Condition } from "@/fakeData";
 import { useSession } from "next-auth/react";
+import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 
 type Props = {
@@ -27,6 +28,8 @@ const SingleFloorPolygon = ({
 }: Props) => {
   const { status } = useSession();
   const { push } = useRouter();
+
+  const {t} = useTranslation()
 
   const handlePageChange = () => {
     if (status === "unauthenticated" && flat.condition !== Condition.sold) {
@@ -73,15 +76,16 @@ const SingleFloorPolygon = ({
         onClick={handlePageChange}
       />
       {flat.condition === Condition.sold &&
-        textPoints.map(textPoint => {
+        textPoints.map((textPoint,idx) => {
           if (textPoint.flats.includes(flat.flatNum)) {
             return (
               <text
                 x={textPoint.x}
                 y={textPoint.y}
                 className="text-4xl font-bold fill-red-500"
+                key={idx}
               >
-                SOLD
+                {t("floor.flats.sold")}
               </text>
             );
           }

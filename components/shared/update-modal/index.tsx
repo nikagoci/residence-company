@@ -1,8 +1,10 @@
 import { Dispatch, Fragment, SetStateAction, useState } from "react";
-import { Dialog, Transition } from "@headlessui/react";
-import { XIcon } from "@heroicons/react/outline";
 import { ApolloErrorOptions } from "@apollo/client/errors";
+import { XIcon } from "@heroicons/react/outline";
+import { Dialog, Transition } from "@headlessui/react";
 import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
+
 import AddProperty from "./add-property";
 import UpdateForm from "./update-form";
 import { Condition } from "@/fakeData";
@@ -35,6 +37,7 @@ const UpdateModal = ({
 }: Props) => {
   const [success, setSuccess] = useState(false);
   const { push } = useRouter();
+  const {t} = useTranslation()
 
   const [flatInfo, setFlatInfo] = useState<FlatInfo>({
     livingArea: flat.livingArea as number,
@@ -180,12 +183,12 @@ const UpdateModal = ({
                     as="h3"
                     className="text-xl font-medium leading-6 text-gray-900"
                   >
-                    Rivertown Residence
+                    {t("floor.update-modal.title")}
                   </Dialog.Title>
                   <div className="flex justify-center mt-2 font-semibold text-md text-primary breadcrumbs">
                     <ul>
-                      <li>Floor {flat.floor}</li>
-                      <li>Flat {flat.flatNum}</li>
+                      <li>{t("floor.update-modal.floor")} {flat.floor}</li>
+                      <li>{t("floor.update-modal.flat")} {flat.flatNum}</li>
                     </ul>
                   </div>
                 </div>

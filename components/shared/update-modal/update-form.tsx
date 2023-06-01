@@ -1,6 +1,7 @@
 import { useMutation } from "@apollo/client";
 import { FieldError, FieldValues, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useTranslation } from "next-i18next";
 
 import Select from "../select";
 import { schema } from "@/libs/update-schema";
@@ -8,6 +9,7 @@ import { UPDATE_FLAT } from "@/libs/graphql/queries";
 import Input from "./input";
 import { Condition } from "@/fakeData";
 import { Dispatch, SetStateAction, useEffect } from "react";
+import { useRouter } from "next/router";
 
 type FlatInfo = {
   livingArea: number;
@@ -48,8 +50,12 @@ const UpdateForm = ({
     formState: { errors },
   } = useForm<FieldValues>({ resolver: zodResolver(schema) });
 
-  const [updateFlat, { data, loading }] =
-    useMutation<UpdateFlat>(UPDATE_FLAT);
+  const { t } = useTranslation();
+  const {locale} = useRouter()
+
+  console.log(locale)
+
+  const [updateFlat, { data, loading }] = useMutation<UpdateFlat>(UPDATE_FLAT);
 
   useEffect(() => {
     if (!loading && data) {
@@ -79,14 +85,13 @@ const UpdateForm = ({
         flatNum,
       },
     });
-
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="grid grid-cols-2 gap-12 py-6 text-lg font-bold">
+      <div className="grid grid-cols-2 gap-12 py-6 text-sm font-bold">
         <div className="flex items-center justify-start gap-x-3">
-          <label htmlFor="condition">Condition:</label>
+          <label htmlFor="condition">{t("floor.update-modal.form.condition")}:</label>
           <Select
             options={["sale", "sold"]}
             id="condition"
@@ -95,7 +100,7 @@ const UpdateForm = ({
           />
         </div>
         <div className="flex items-center justify-between">
-          <label htmlFor="livingArea">Living Area:</label>
+          <label htmlFor="livingArea">{t("floor.update-modal.form.living-area")}:</label>
           <Input
             error={errors?.livingArea}
             value={flatInfo.livingArea}
@@ -105,7 +110,7 @@ const UpdateForm = ({
         </div>
 
         <div className="flex items-center justify-between">
-          <label htmlFor="price">Price</label>
+          <label htmlFor="price">{t("floor.update-modal.form.price")}</label>
           <Input
             error={errors?.price}
             value={flatInfo.price}
@@ -115,7 +120,7 @@ const UpdateForm = ({
         </div>
         {flatInfo?.balconies.map((baclony, idx) => (
           <div key={idx} className="flex items-center justify-between">
-            <label htmlFor="balcony">Balcony</label>
+            <label htmlFor="balcony">{t("floor.update-modal.form.balcony")}</label>
             <Input
               name="balconies"
               removable={flatInfo.balconies.length > 1}
@@ -135,7 +140,7 @@ const UpdateForm = ({
         ))}
         {flatInfo.bedrooms.map((bedroom, idx) => (
           <div key={idx} className="flex items-center justify-between ">
-            <label htmlFor={`bedroom${idx}`}>Bedroom</label>
+            <label htmlFor={`bedroom${idx}`}>{t("floor.update-modal.form.bedroom")}</label>
             <Input
               name="bedrooms"
               removable={flatInfo.bedrooms.length > 1}
@@ -155,7 +160,7 @@ const UpdateForm = ({
         ))}
         {flatInfo.wetPoints.map((wetPoint, idx) => (
           <div key={idx} className="flex items-center justify-between ">
-            <label htmlFor={`wetPoint${idx}`}>Wet point</label>
+            <label htmlFor={`wetPoint${idx}`}>{t("floor.update-modal.form.wetpoint")}</label>
             <Input
               name="wetPoints"
               removable={flatInfo.wetPoints.length > 1}

@@ -6,6 +6,7 @@ import Link from "next/link";
 
 import SingleFloorPolygon from "./single-floor-polygon";
 import { GET_ALL_FLATS } from "@/libs/graphql/queries";
+import { useTranslation } from "next-i18next";
 
 type Props = {
   floorNum: string;
@@ -19,6 +20,8 @@ const FloorPolygon = ({ floorNum }: Props) => {
   const [hoveredPolygon, setHoveredPolygon] = useState<number | null>(null);
   const [totalArea, setTotalArea] = useState(0);
   const [disableButton, setDisableButton] = useState("");
+
+  const { t } = useTranslation();
 
   const { data, loading, error } = useQuery<AllFlats>(GET_ALL_FLATS, {
     variables: { floor: +floorNum },
@@ -64,7 +67,9 @@ const FloorPolygon = ({ floorNum }: Props) => {
           />
         </div>
         <div className="absolute top-0 left-0 z-10 flex flex-col items-center justify-center w-full gap-y-6">
-          <h3 className="text-3xl font-bold text-primary">Floor {floorNum}</h3>
+          <h3 className="text-3xl font-bold text-primary">
+            {t("floor.flats.floor")} {floorNum}
+          </h3>
           <div className="flex gap-x-4">
             <Link
               href={`/residence/floor/${+floorNum - 1}`}
@@ -116,12 +121,12 @@ const FloorPolygon = ({ floorNum }: Props) => {
         />
         {hoveredPolygon && (
           <div className="absolute right-0 px-6 py-2 text-xs font-bold text-white lg:top-14 xl:top-24 top-4 sm:text-sm bg-primary rounded-xl ">
-            <h3>Flat: {hoveredPolygon}</h3>
-            <h3>Area: {totalArea.toFixed(1)} sq.m</h3>
+            <h3>{t("floor.flats.flat")}: {hoveredPolygon}</h3>
+            <h3>{t("floor.flats.area")}: {totalArea.toFixed(1)} sq.m</h3>
           </div>
         )}
         <div className="absolute left-0 z-10 flex flex-col items-center justify-center w-full md:top-0 -top-16 gap-y-6">
-          <h3 className="text-3xl font-bold text-primary">Floor {floorNum}</h3>
+          <h3 className="text-3xl font-bold text-primary">{t("floor.flats.floor")} {floorNum}</h3>
           <div className="flex gap-x-4">
             <Link
               href={`/residence/floor/${+floorNum - 1}`}
