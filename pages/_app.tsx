@@ -7,9 +7,9 @@ import client from "@/libs/graphql/provider";
 import { SessionProvider } from "next-auth/react";
 import { appWithTranslation } from "next-i18next";
 
-function App({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps: {session, ...pageProps} }: AppProps) {
   return (
-    <SessionProvider>
+    <SessionProvider session={session} basePath='/api/auth'>
       <ApolloProvider client={client}>
         <Layout>
           <Component {...pageProps} />
