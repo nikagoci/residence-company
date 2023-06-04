@@ -11,6 +11,49 @@ import { Condition } from "@/fakeData";
 import { Dispatch, SetStateAction, useEffect } from "react";
 import { useRouter } from "next/router";
 
+function createFlatObject(flatInfo: FlatInfo) {
+  const { price, livingArea, balconies, bedrooms, wetPoints } = flatInfo;
+
+  interface FlatObject {
+    price: number;
+    livingArea: number;
+    balconies: { [key: string]: number };
+    bedrooms: { [key: string]: number };
+    wetPoints: { [key: string]: number };
+  }
+
+  const flatObject: FlatObject = {
+    price,
+    livingArea,
+    balconies: {},
+    bedrooms: {},
+    wetPoints: {},
+  };
+
+  // Copy balcony data
+  let balconyCount = 1;
+  for (const key in balconies) {
+    flatObject.balconies[`balcony${balconyCount}`] = balconies[key];
+    balconyCount++;
+  }
+
+  // Copy bedroom data
+  let bedroomCount = 1;
+  for (const key in bedrooms) {
+    flatObject.bedrooms[`bedroom${bedroomCount}`] = bedrooms[key];
+    bedroomCount++;
+  }
+
+  // Copy wet point data
+  let wetPointCount = 1;
+  for (const key in wetPoints) {
+    flatObject.wetPoints[`wetPoint${wetPointCount}`] = wetPoints[key];
+    wetPointCount++;
+  }
+
+  return flatObject;
+}
+
 type FlatInfo = {
   livingArea: number;
   price: number;
@@ -48,12 +91,13 @@ const UpdateForm = ({
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FieldValues>({ resolver: zodResolver(schema) });
+  } = useForm<FieldValues>({
+    resolver: zodResolver(schema),
+    defaultValues: createFlatObject(flatInfo),
+  });
 
   const { t } = useTranslation();
-  const {locale} = useRouter()
-
-  console.log(locale)
+  const { locale } = useRouter();
 
   const [updateFlat, { data, loading }] = useMutation<UpdateFlat>(UPDATE_FLAT);
 
@@ -64,6 +108,7 @@ const UpdateForm = ({
   }, [data, loading]);
 
   const onSubmit = (inputValues: FieldValues) => {
+    console.log(inputValues);
     const balconies = [inputValues.balconies].map((obj) =>
       Object.values(obj)
     )[0];
@@ -71,7 +116,6 @@ const UpdateForm = ({
     const wetPoints = [inputValues.wetPoints].map((obj) =>
       Object.values(obj)
     )[0];
-
     const { livingArea, condition, price } = inputValues;
 
     updateFlat({
@@ -89,9 +133,15 @@ const UpdateForm = ({
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className={`${locale === 'en' ? "text-lg" : "text-xs"} grid grid-cols-2 gap-12 py-6 font-bold`}>
+      <div
+        className={`${
+          locale === "en" ? "text-lg" : "text-xs"
+        } grid grid-cols-2 gap-12 py-6 font-bold`}
+      >
         <div className="flex items-center justify-start gap-x-3">
-          <label htmlFor="condition">{t("floor.update-modal.form.condition")}:</label>
+          <label htmlFor="condition">
+            {t("floor.update-modal.form.condition")}:
+          </label>
           <Select
             options={["sale", "sold"]}
             id="condition"
@@ -100,10 +150,11 @@ const UpdateForm = ({
           />
         </div>
         <div className="flex items-center justify-between">
-          <label htmlFor="livingArea">{t("floor.update-modal.form.living-area")}:</label>
+          <label htmlFor="livingArea">
+            {t("floor.update-modal.form.living-area")}:
+          </label>
           <Input
             error={errors?.livingArea}
-            value={flatInfo.livingArea}
             id="livingArea"
             register={register}
           />
@@ -111,22 +162,18 @@ const UpdateForm = ({
 
         <div className="flex items-center justify-between">
           <label htmlFor="price">{t("floor.update-modal.form.price")}</label>
-          <Input
-            error={errors?.price}
-            value={flatInfo.price}
-            id="price"
-            register={register}
-          />
+          <Input error={errors?.price} id="price" register={register} />
         </div>
         {flatInfo?.balconies.map((baclony, idx) => (
           <div key={idx} className="flex items-center justify-between">
-            <label htmlFor="balcony">{t("floor.update-modal.form.balcony")}</label>
+            <label htmlFor="balcony">
+              {t("floor.update-modal.form.balcony")}
+            </label>
             <Input
               name="balconies"
               removable={flatInfo.balconies.length > 1}
               index={idx}
               removeProperty={removeProperty}
-              value={baclony}
               id={`balconies.balcony${idx + 1}`}
               register={register}
               error={
@@ -140,13 +187,14 @@ const UpdateForm = ({
         ))}
         {flatInfo.bedrooms.map((bedroom, idx) => (
           <div key={idx} className="flex items-center justify-between ">
-            <label htmlFor={`bedroom${idx}`}>{t("floor.update-modal.form.bedroom")}</label>
+            <label htmlFor={`bedroom${idx}`}>
+              {t("floor.update-modal.form.bedroom")}
+            </label>
             <Input
               name="bedrooms"
               removable={flatInfo.bedrooms.length > 1}
               index={idx}
               removeProperty={removeProperty}
-              value={bedroom}
               id={`bedrooms.bedroom${idx + 1}`}
               register={register}
               error={
@@ -160,13 +208,14 @@ const UpdateForm = ({
         ))}
         {flatInfo.wetPoints.map((wetPoint, idx) => (
           <div key={idx} className="flex items-center justify-between ">
-            <label htmlFor={`wetPoint${idx}`}>{t("floor.update-modal.form.wetpoint")}</label>
+            <label htmlFor={`wetPoint${idx}`}>
+              {t("floor.update-modal.form.wetpoint")}
+            </label>
             <Input
               name="wetPoints"
               removable={flatInfo.wetPoints.length > 1}
               index={idx}
               removeProperty={removeProperty}
-              value={wetPoint}
               id={`wetPoints.wetPoint${idx + 1}`}
               register={register}
               error={

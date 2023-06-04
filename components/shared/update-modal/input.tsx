@@ -7,7 +7,6 @@ import {
 } from "react-hook-form";
 
 type Props = {
-  value: string | number;
   id: string;
   removeProperty?: (value: string, index: number) => void;
   removable?: boolean;
@@ -18,7 +17,6 @@ type Props = {
 };
 
 const Input = ({
-  value,
   id,
   removeProperty,
   removable,
@@ -33,7 +31,6 @@ const Input = ({
           <input
             id={id}
             type="text"
-            placeholder={`${value}`}
             className={`${
               error && "border-red-500"
             } border input input-bordered`}

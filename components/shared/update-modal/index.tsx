@@ -114,7 +114,6 @@ const UpdateModal = ({
 
   const removeProperty = (value: string, index: number) => {
     const key = value as keyof FlatInfo;
-    console.log(key, index);
     setFlatInfo((prev) => {
       if (Array.isArray(prev[key])) {
         const updatedArray = [...(prev[key] as number[])];
