@@ -1,24 +1,24 @@
+import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
 import { Dispatch, Fragment, SetStateAction, useEffect, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XIcon } from "@heroicons/react/outline";
 import Image from "next/image";
 import { ApolloErrorOptions } from "@apollo/client/errors";
-import { useRouter } from "next/router";
-import { useTranslation } from "next-i18next";
 
 type Props = {
   openModal: boolean;
   setOpenModal: Dispatch<SetStateAction<boolean>>;
   flat: Flat | undefined;
-  error: ApolloErrorOptions | undefined
-  loading: boolean
+  error: ApolloErrorOptions | undefined;
+  loading: boolean;
 };
 
 const Modal = ({ openModal, setOpenModal, flat, error, loading }: Props) => {
   const [totalArea, setTotalArea] = useState(0);
   const [totalBalconyArea, setTotalBalconyArea] = useState(0);
-  const {push} = useRouter()
-  const { t } = useTranslation()
+  const { push } = useRouter();
+  const { t } = useTranslation();
 
   useEffect(() => {
     let balconyArea = 0;
@@ -34,11 +34,11 @@ const Modal = ({ openModal, setOpenModal, flat, error, loading }: Props) => {
   }, [flat]);
 
   const handleClose = () => {
-    if(flat){
-      setOpenModal(false)
-      push({pathname: `/residence/floor/${flat.floor}`})
+    if (flat) {
+      setOpenModal(false);
+      push({ pathname: `/residence/floor/${flat.floor}` });
     }
-  }
+  };
 
   if (!flat || loading) {
     if (!openModal) {
@@ -89,8 +89,8 @@ const Modal = ({ openModal, setOpenModal, flat, error, loading }: Props) => {
     }
   }
 
-  if(error){
-    return <h1>{t("error")}</h1>;
+  if (error) {
+    push("error");
   }
 
   return (
@@ -110,7 +110,10 @@ const Modal = ({ openModal, setOpenModal, flat, error, loading }: Props) => {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Dialog.Overlay className="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-75" onClick={handleClose}  />
+            <Dialog.Overlay
+              className="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-75"
+              onClick={handleClose}
+            />
           </Transition.Child>
 
           {/* This element is to trick the browser into centering the modal contents. */}
@@ -147,8 +150,12 @@ const Modal = ({ openModal, setOpenModal, flat, error, loading }: Props) => {
                   </Dialog.Title>
                   <div className="flex justify-center mt-2 font-semibold text-md text-primary breadcrumbs">
                     <ul>
-                      <li>{t("floor.modal.floor")} {flat.floor}</li>
-                      <li>{t("floor.modal.flat")} {flat.flatNum}</li>
+                      <li>
+                        {t("floor.modal.floor")} {flat.floor}
+                      </li>
+                      <li>
+                        {t("floor.modal.flat")} {flat.flatNum}
+                      </li>
                     </ul>
                   </div>
                 </div>
@@ -165,17 +172,26 @@ const Modal = ({ openModal, setOpenModal, flat, error, loading }: Props) => {
               <div className="flex flex-col py-6 text-lg font-bold gap-y-2">
                 <div className="flex gap-x-8">
                   <h4>{t("floor.modal.description.total-area")}:</h4>
-                  <h5>{totalArea} {t("floor.modal.description.metric")}</h5>
+                  <h5>
+                    {totalArea} {t("floor.modal.description.metric")}
+                  </h5>
                 </div>
                 <div className="flex gap-x-8">
                   <h4>{t("floor.modal.description.living-area")}:</h4>
-                  <h5>{flat.livingArea} {t("floor.modal.description.metric")}</h5>
+                  <h5>
+                    {flat.livingArea} {t("floor.modal.description.metric")}
+                  </h5>
                 </div>
                 <div className="flex gap-x-8">
                   <h4>
-                    {flat.balconies.length > 1 ? t("floor.modal.description.balconies-area") : t("floor.modal.description.balcony-area") }:
+                    {flat.balconies.length > 1
+                      ? t("floor.modal.description.balconies-area")
+                      : t("floor.modal.description.balcony-area")}
+                    :
                   </h4>
-                  <h5>{totalBalconyArea} {t("floor.modal.description.metric")}</h5>
+                  <h5>
+                    {totalBalconyArea} {t("floor.modal.description.metric")}
+                  </h5>
                 </div>
                 <div className="flex gap-x-8 ">
                   <h4>{t("floor.modal.description.price")}:</h4>
@@ -185,13 +201,17 @@ const Modal = ({ openModal, setOpenModal, flat, error, loading }: Props) => {
                   {flat.bedrooms.map((bedroom, idx) => (
                     <div key={idx}>
                       <h4>{t("floor.modal.description.bedroom")}:</h4>
-                      <h5 className="text-primary">{bedroom} {t("floor.modal.description.metric")}</h5>
+                      <h5 className="text-primary">
+                        {bedroom} {t("floor.modal.description.metric")}
+                      </h5>
                     </div>
                   ))}
                   {flat.wetPoints.map((wetPoint, idx) => (
                     <div key={idx}>
                       <h4>{t("floor.modal.description.wet-point")}:</h4>
-                      <h5 className="text-primary">{wetPoint} {t("floor.modal.description.metric")}</h5>
+                      <h5 className="text-primary">
+                        {wetPoint} {t("floor.modal.description.metric")}
+                      </h5>
                     </div>
                   ))}
                   <div>
@@ -204,7 +224,7 @@ const Modal = ({ openModal, setOpenModal, flat, error, loading }: Props) => {
                 <button
                   type="button"
                   className="inline-flex justify-center px-6 py-2 text-lg font-medium text-white border border-transparent rounded-md shadow-sm bg-light_purple hover:bg-purple focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple"
-                  onClick={() => push('/#contact')}
+                  onClick={() => push("/#contact")}
                 >
                   {t("floor.modal.contact")}
                 </button>

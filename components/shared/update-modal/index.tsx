@@ -128,7 +128,7 @@ const UpdateModal = ({
   };
 
   if (error) {
-    return <h1>{t("error")}</h1>;
+    push('/error')
   }
 
   return (

@@ -3,6 +3,7 @@ import Image from "next/image";
 import { ArrowRightIcon, ArrowLeftIcon } from "@heroicons/react/outline";
 import { useQuery } from "@apollo/client";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 import SingleFloorPolygon from "./single-floor-polygon";
 import { GET_ALL_FLATS } from "@/libs/graphql/queries";
@@ -21,6 +22,7 @@ const FloorPolygon = ({ floorNum }: Props) => {
   const [totalArea, setTotalArea] = useState(0);
   const [disableButton, setDisableButton] = useState("");
 
+  const {push} = useRouter()
   const { t } = useTranslation();
 
   const { data, loading, error } = useQuery<AllFlats>(GET_ALL_FLATS, {
@@ -98,7 +100,7 @@ const FloorPolygon = ({ floorNum }: Props) => {
   }
 
   if (error) {
-    return <h1>{t("error")}</h1>;
+    push('/error')
   }
 
   const handlePolygonHover = (polygonId: number) => {
