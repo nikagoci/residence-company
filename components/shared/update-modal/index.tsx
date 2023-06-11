@@ -7,7 +7,7 @@ import { useTranslation } from "next-i18next";
 
 import AddProperty from "./add-property";
 import UpdateForm from "./update-form";
-import { Condition } from "@/fakeData";
+import { Condition } from "@/enumType";
 import SuccessForm from "./success-form";
 
 type Props = {

@@ -7,7 +7,7 @@ import Select from "../select";
 import { schema } from "@/libs/update-schema";
 import { UPDATE_FLAT } from "@/libs/graphql/queries";
 import Input from "./input";
-import { Condition } from "@/fakeData";
+import { Condition } from "@/enumType";
 import { Dispatch, SetStateAction, useEffect } from "react";
 import { useRouter } from "next/router";
 

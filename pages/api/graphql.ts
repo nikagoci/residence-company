@@ -1,4 +1,4 @@
-import { Condition } from "@/fakeData";
+import { Condition } from "@/enumType";
 import prisma from "@/libs/prisma";
 import { gql, ApolloServer } from "apollo-server-micro";
 
