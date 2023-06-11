@@ -21,7 +21,10 @@ export default NextAuth({
                     return null
                 }
 
-                return user
+                return {
+                    id: "1234",
+                    username: credentials?.username
+                }
             }
 
         })
