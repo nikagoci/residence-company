@@ -28,9 +28,9 @@ const Residence = () => {
     variables: { areaFrom, areaTo, priceFrom, priceTo },
   });
 
-  if (error) {
-    push("/error");
-  }
+  // if (error) {
+  //   push("/error");
+  // }
 
   return (
     <section className="pt-16 pb-4">
