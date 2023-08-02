@@ -34,9 +34,9 @@ const Dashboard = () => {
     );
   }
 
-  if (error) {
-    push('/error')
-  }
+  // if (error) {
+  //   push('/error')
+  // }
 
   return (
     <section className="py-16">

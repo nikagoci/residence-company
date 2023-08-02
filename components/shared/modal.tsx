@@ -89,9 +89,9 @@ const Modal = ({ openModal, setOpenModal, flat, error, loading }: Props) => {
     }
   }
 
-  if (error) {
-    push("error");
-  }
+  // if (error) {
+  //   push("error");
+  // }
 
   return (
     <Transition.Root show={openModal} as={Fragment}>

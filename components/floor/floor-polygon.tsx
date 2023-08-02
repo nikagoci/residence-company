@@ -99,9 +99,9 @@ const FloorPolygon = ({ floorNum }: Props) => {
     );
   }
 
-  if (error) {
-    push('/error')
-  }
+  // if (error) {
+  //   push('/error')
+  // }
 
   const handlePolygonHover = (polygonId: number) => {
     setHoveredPolygon(polygonId);
