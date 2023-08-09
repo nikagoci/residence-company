@@ -1,8 +1,8 @@
 import { useRef, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
 import { useTranslation } from "next-i18next";
-import { ArrowRightIcon, ArrowLeftIcon } from "@heroicons/react/outline";
+import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperType } from "swiper/types";
+import { ArrowRightIcon, ArrowLeftIcon } from "@heroicons/react/outline";
 
 import SingleMaterial from "./single-material";
 
@@ -50,6 +50,14 @@ const Material = () => {
 
   const handleButtonDisable = (swiper: SwiperType) => {
     if (swiper.currentBreakpoint === "0") {
+      if (swiper.realIndex === 0) {
+        setDisableButton("first");
+      } else if (swiper.realIndex === 4) {
+        setDisableButton("second");
+      } else {
+        setDisableButton("");
+      }
+    } else if (swiper.currentBreakpoint === "768") {
       if (swiper.realIndex === 0) {
         setDisableButton("first");
       } else if (swiper.realIndex === 3) {
@@ -108,6 +116,9 @@ const Material = () => {
             <Swiper
               breakpoints={{
                 0: {
+                  slidesPerView: 2,
+                },
+                768: {
                   slidesPerView: 3,
                 },
                 1024: {
@@ -115,7 +126,6 @@ const Material = () => {
                 },
               }}
               spaceBetween={40}
-              slidesPerView={3}
               onSwiper={(swiper) => (swiperRef.current = swiper)}
               onSlideChange={handleButtonDisable}
               ref={swiperRef as any}

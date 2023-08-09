@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { ArrowRightIcon, ArrowLeftIcon } from "@heroicons/react/outline";
-import { useQuery } from "@apollo/client";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
+import { useQuery } from "@apollo/client";
+import { ArrowRightIcon, ArrowLeftIcon } from "@heroicons/react/outline";
 
 import SingleFloorPolygon from "./single-floor-polygon";
 import { GET_ALL_FLATS } from "@/libs/graphql/queries";
-import { useTranslation } from "next-i18next";
 
 type Props = {
   floorNum: string;
@@ -122,7 +122,7 @@ const FloorPolygon = ({ floorNum }: Props) => {
           height={820}
         />
         {hoveredPolygon && (
-          <div className="absolute right-0 px-6 py-2 text-xs font-bold text-white lg:top-14 xl:top-24 top-4 sm:text-sm bg-primary rounded-xl ">
+          <div className="absolute right-0 hidden px-6 py-2 text-xs font-bold text-white sm:block lg:top-14 xl:top-24 top-4 sm:text-sm bg-primary rounded-xl ">
             <h3>{t("floor.flats.flat")}: {hoveredPolygon}</h3>
             <h3>{t("floor.flats.area")}: {totalArea.toFixed(1)} {t("floor.modal.description.metric")}</h3>
           </div>
