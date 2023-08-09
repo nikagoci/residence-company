@@ -49,7 +49,16 @@ const Material = () => {
   };
 
   const handleButtonDisable = (swiper: SwiperType) => {
+
     if (swiper.currentBreakpoint === "0") {
+      if (swiper.realIndex === 0) {
+        setDisableButton("first");
+      } else if (swiper.realIndex === 5) {
+        setDisableButton("second");
+      } else {
+        setDisableButton("");
+      }
+    } else if (swiper.currentBreakpoint === "400") {
       if (swiper.realIndex === 0) {
         setDisableButton("first");
       } else if (swiper.realIndex === 4) {
@@ -57,7 +66,7 @@ const Material = () => {
       } else {
         setDisableButton("");
       }
-    } else if (swiper.currentBreakpoint === "768") {
+    }else if (swiper.currentBreakpoint === "768") {
       if (swiper.realIndex === 0) {
         setDisableButton("first");
       } else if (swiper.realIndex === 3) {
@@ -81,30 +90,28 @@ const Material = () => {
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div className="flex flex-col">
           <div className="mb-8 space-y-6 basis-1/3">
-            <h4 className="text-5xl font-bold leading-tight">
+            <h4 className="text-4xl font-bold leading-tight sm:text-5xl">
               {t("residence.material.building-materials")}
             </h4>
-            <p className="max-w-sm text-xl font-semibold leading-8 md:max-w-3xl">
+            <p className="max-w-sm text-lg font-semibold leading-8 sm:text-xl md:max-w-3xl">
               {t("residence.material.header")}
             </p>
             <div className="flex gap-x-4">
               <button
-                className={`${
-                  disableButton === "first"
+                className={`${disableButton === "first"
                     ? "bg-light_blue"
                     : "bg-primary active:scale-110"
-                } p-4 text-white transition duration-300 rounded-full `}
+                  } p-4 text-white transition duration-300 rounded-full `}
                 onClick={handleSlidePrev}
                 disabled={disableButton === "first"}
               >
                 <ArrowLeftIcon className="w-4" />
               </button>
               <button
-                className={`${
-                  disableButton === "second"
+                className={`${disableButton === "second"
                     ? "bg-light_blue"
                     : "bg-primary active:scale-110"
-                } p-4 text-white transition duration-300 rounded-full `}
+                  } p-4 text-white transition duration-300 rounded-full `}
                 onClick={handleSlideNext}
                 disabled={disableButton === "second"}
               >
@@ -116,7 +123,10 @@ const Material = () => {
             <Swiper
               breakpoints={{
                 0: {
-                  slidesPerView: 2,
+                  slidesPerView: 1,
+                },
+                400: {
+                  slidesPerView: 2
                 },
                 768: {
                   slidesPerView: 3,

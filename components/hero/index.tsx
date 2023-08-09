@@ -15,7 +15,7 @@ const Hero = () => {
         </p>
         <Link
           href="/residence"
-          className="px-16 py-6 mx-auto my-6 font-bold text-white transition duration-300 ease-in-out transform rounded-full shadow-lg hover:bg-purple bg-light_purple lg:mx-0 hover:underline focus:outline-none focus:shadow-outline hover:scale-105"
+          className="px-10 py-4 mx-auto my-6 font-bold text-white transition duration-300 ease-in-out transform rounded-full shadow-lg sm:px-16 sm:py-6 hover:bg-purple bg-light_purple lg:mx-0 hover:underline focus:outline-none focus:shadow-outline hover:scale-105"
         >
           {t("home.hero.button")}
         </Link>

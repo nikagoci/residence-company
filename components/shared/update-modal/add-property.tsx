@@ -1,5 +1,5 @@
-import { PlusCircleIcon } from "@heroicons/react/outline";
 import { useTranslation } from "next-i18next";
+import { PlusCircleIcon } from "@heroicons/react/outline";
 
 type Props = {
   addProperty: (value: keyof FlatInfo) => void;
@@ -16,7 +16,7 @@ const AddProperty = ({ addProperty }: Props) => {
   const { t } = useTranslation();
 
   return (
-    <div className="flex items-center justify-around py-6">
+    <div className="flex flex-wrap items-center justify-center mt-2 gap-x-4 sm:justify-around sm:mt-0 gap-y-2 sm:py-6 sm:flex-row">
       <button
         type="button"
         className="btn btn-primary gap-x-3"

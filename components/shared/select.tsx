@@ -16,7 +16,7 @@ const Select = ({ options, id, changeHandler, register, primaryValue }: Props) =
     return (
       <select
         id={id}
-        className="w-full input input-bordered"
+        className="w-1/2 bg-white sm:w-full input input-bordered "
         {...register("condition")}
         defaultValue={primaryValue}
       >

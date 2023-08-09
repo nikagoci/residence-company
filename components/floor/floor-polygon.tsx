@@ -56,48 +56,48 @@ const FloorPolygon = ({ floorNum }: Props) => {
     }
   }, [hoveredPolygon]);
 
-  if (loading) {
-    return (
-      <div className="relative flex justify-center w-full h-full">
-        <div className="relative w-[100%] lg:w-[70%] h-full ">
-          <Image
-            src="/images/floor.jpg"
-            alt="residence"
-            className="w-full h-full rounded-2xl"
-            width={1220}
-            height={820}
-          />
-        </div>
-        <div className="absolute top-0 left-0 z-10 flex flex-col items-center justify-center w-full gap-y-6">
-          <h3 className="text-3xl font-bold text-primary">
-            {t("floor.flats.floor")} {floorNum}
-          </h3>
-          <div className="flex gap-x-4">
-            <Link
-              href={`/residence/floor/${+floorNum - 1}`}
-              className={`${
-                disableButton === "first"
-                  ? "bg-light_blue pointer-events-none"
-                  : "bg-primary active:scale-110"
-              } p-4 text-white transition duration-300 rounded-full `}
-            >
-              <ArrowLeftIcon className="w-4" />
-            </Link>
-            <Link
-              href={`/residence/floor/${+floorNum + 1}`}
-              className={`${
-                disableButton === "second"
-                  ? "bg-light_blue pointer-events-none"
-                  : "bg-primary active:scale-110"
-              } p-4 text-white transition duration-300 rounded-full `}
-            >
-              <ArrowRightIcon className="w-4" />
-            </Link>
-          </div>
-        </div>
-      </div>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <div className="relative flex justify-center w-full h-full">
+  //       <div className="relative w-[100%] lg:w-[70%] h-full ">
+  //         <Image
+  //           src="/images/floor.jpg"
+  //           alt="residence"
+  //           className="w-full h-full rounded-2xl"
+  //           width={1220}
+  //           height={820}
+  //         />
+  //       </div>
+  //       <div className="absolute top-0 left-0 z-10 flex flex-col items-center justify-center w-full gap-y-6">
+  //         <h3 className="text-3xl font-bold text-primary">
+  //           {t("floor.flats.floor")} {floorNum}
+  //         </h3>
+  //         <div className="flex gap-x-4">
+  //           <Link
+  //             href={`/residence/floor/${+floorNum - 1}`}
+  //             className={`${
+  //               disableButton === "first"
+  //                 ? "bg-light_blue pointer-events-none"
+  //                 : "bg-primary active:scale-110"
+  //             } p-4 text-white transition duration-300 rounded-full `}
+  //           >
+  //             <ArrowLeftIcon className="w-4" />
+  //           </Link>
+  //           <Link
+  //             href={`/residence/floor/${+floorNum + 1}`}
+  //             className={`${
+  //               disableButton === "second"
+  //                 ? "bg-light_blue pointer-events-none"
+  //                 : "bg-primary active:scale-110"
+  //             } p-4 text-white transition duration-300 rounded-full `}
+  //           >
+  //             <ArrowRightIcon className="w-4" />
+  //           </Link>
+  //         </div>
+  //       </div>
+  //     </div>
+  //   );
+  // }
 
   // if (error) {
   //   push('/error')
@@ -127,7 +127,7 @@ const FloorPolygon = ({ floorNum }: Props) => {
             <h3>{t("floor.flats.area")}: {totalArea.toFixed(1)} {t("floor.modal.description.metric")}</h3>
           </div>
         )}
-        <div className="absolute left-0 z-10 flex flex-col items-center justify-center w-full md:top-0 -top-16 gap-y-6">
+        <div className="absolute left-0 z-10 flex flex-col items-center justify-center w-full md:top-0 -top-24 gap-y-6">
           <h3 className="text-3xl font-bold text-primary">{t("floor.flats.floor")} {floorNum}</h3>
           <div className="flex gap-x-4">
             <Link

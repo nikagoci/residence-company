@@ -1,11 +1,11 @@
-import Image from "next/image";
 import { FormEvent, useContext, useState } from "react";
+import Image from "next/image";
+import { useTranslation } from "next-i18next";
 
 import Select from "../shared/select";
 import SearchButton from "../shared/search-button";
 import Table from "../shared/table/index";
 import { FilterContext } from "@/context/filterContext";
-import { useTranslation } from "next-i18next";
 
 type Props = {
   flats: Flat[] | undefined;
@@ -66,7 +66,7 @@ const Filter = ({ flats, loading }: Props) => {
   return (
     <form
       onSubmit={submitHandler}
-      className="relative flex flex-col items-start w-full mt-4 md:gap-x-2 gap-y-3 md:flex-row md:items-center md:justify-between"
+      className="relative flex flex-col items-start w-full mt-4 md:gap-x-2 gap-y-5 md:flex-row md:items-center md:justify-between"
     >
       <h4 className="text-sm lg:text-base text-primary ">{t("residence.filter.search-flats")}</h4>
       <div className="flex items-center text-sm gap-x-4 md:gap-x-1">

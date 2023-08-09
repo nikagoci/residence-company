@@ -1,15 +1,15 @@
+import { Dispatch, SetStateAction, useEffect } from "react";
+import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
 import { useMutation } from "@apollo/client";
 import { FieldError, FieldValues, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useTranslation } from "next-i18next";
 
 import Select from "../select";
 import { schema } from "@/libs/update-schema";
 import { UPDATE_FLAT } from "@/libs/graphql/queries";
 import Input from "./input";
 import { Condition } from "@/enumType";
-import { Dispatch, SetStateAction, useEffect } from "react";
-import { useRouter } from "next/router";
 
 function createFlatObject(flatInfo: FlatInfo) {
   const { price, livingArea, balconies, bedrooms, wetPoints } = flatInfo;
@@ -136,9 +136,9 @@ const UpdateForm = ({
       <div
         className={`${
           locale === "en" ? "text-lg" : "text-xs"
-        } grid grid-cols-2 gap-12 py-6 font-bold`}
+        } grid sm:grid-cols-2 grid-cols-1 gap-2 sm:gap-12 py-6 font-bold `}
       >
-        <div className="flex items-center justify-start gap-x-3">
+        <div className="flex items-center justify-between sm:justify-start gap-x-3 ">
           <label htmlFor="condition">
             {t("floor.update-modal.form.condition")}:
           </label>

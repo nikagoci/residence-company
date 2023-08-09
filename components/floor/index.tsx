@@ -9,7 +9,7 @@ const Floor = ({floorNum}: Props) => {
   return (
     <section className="py-16">
       <div className="flex flex-col items-center">
-        <div className="relative flex justify-center w-full h-full mt-10">
+        <div className="relative flex justify-center w-full h-full mt-16">
           <FloorPolygon floorNum={floorNum} />
         </div>
       </div>

@@ -26,14 +26,14 @@ const Input = ({
   error,
 }: Props) => {
   return (
-      <div>
-        <div className="relative">
+      <div className="w-1/2">
+        <div className="relative w-full">
           <input
             id={id}
             type="text"
             className={`${
               error && "border-red-500"
-            } border input input-bordered`}
+            } border input input-bordered bg-white w-full`}
             {...register(id, { valueAsNumber: true })}
           />
           {removable && index !== undefined && name && removeProperty && (
