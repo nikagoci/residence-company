@@ -17,6 +17,7 @@ const SingeFloor = () => {
   const { query, push } = useRouter();
   const { data, loading, error } = useQuery<SingleFlat>(GET_SINGLE_FLAT, {
     variables: { flatNum: query.flat && +query.flat },
+    skip: !query.flat
   });
 
   const floorNum = query.floorId as string;

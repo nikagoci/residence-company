@@ -22,12 +22,12 @@ const FloorPolygon = ({ floorNum }: Props) => {
   const [totalArea, setTotalArea] = useState(0);
   const [disableButton, setDisableButton] = useState("");
 
-  const {push} = useRouter()
+  const {query} = useRouter()
   const { t } = useTranslation();
 
   const { data, loading, error } = useQuery<AllFlats>(GET_ALL_FLATS, {
     variables: { floor: +floorNum },
-    skip: !floorNum,
+    skip: !floorNum || !!query.flat,
   });
 
   useEffect(() => {
