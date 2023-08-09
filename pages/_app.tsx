@@ -8,7 +8,7 @@ import { appWithTranslation } from "next-i18next";
 import { ApolloProvider } from "@apollo/client/react";
 
 import Layout from "@/components/layout";
-import client from "@/libs/graphql/provider";
+import createApolloClient from "@/libs/graphql/provider";
 
 function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   const {pathname} = useRouter();
@@ -33,7 +33,7 @@ function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
         <meta name="keywords" content="Residence, Flat, Sale Flats" />
       </Head>
       <SessionProvider session={session} basePath="/api/auth">
-        <ApolloProvider client={client}>
+        <ApolloProvider client={createApolloClient()}>
           <Layout>
             <Component {...pageProps} />
           </Layout>
