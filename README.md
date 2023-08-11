@@ -1,8 +1,6 @@
 ## Elite Residence / Full Stack Project
 
-Elite Residence is an open-source, full-stack, next.js project which allows user to buy their dream flat in newly created residences.
-
-The website has two modes for the user and for the administrator.
+Elite Residence is an open-source, full-stack, next.js project which allows user to buy their dream flat in newly created residences. The website has two modes for the user and for the administrator. [https://eliteresidence.vercel.app](https://eliteresidence.vercel.app).
 
 ## User
 
@@ -20,11 +18,11 @@ The website has two modes for the user and for the administrator.
 - Have access to modify any flat: remove/add balconies, change flat area, price, and so on.
 
 
-To use the website as administrator please forward to [https://eliteresidence.vercel.app/dashboard](https://eliteresidence.vercel.app/dashboard).
-If you have no access to a username or password please contact me.
+To use the website as administrator please forward to [https://eliteresidence.vercel.app/dashboard](https://eliteresidence.vercel.app/dashboard). If you have no access to a username or password please contact me.
 
 ## Stack Used
 
-Frontend: Next.js
-Backend: Graphql/Prisma
-Styling: Tailwind.css
+- Frontend: Next.js
+- Backend: Graphql/Prisma
+- Styling: Tailwind.css
+
