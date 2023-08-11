@@ -1,40 +1,30 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
-
-
 ## Elite Residence / Full Stack Project
 
-First, run the development server:
+Elite Residence is an open-source, full-stack, next.js project which allows user to buy their dream flat in newly created residences.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+The website has two modes for the user and for the administrator.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## User
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+- Can see all available flat
+- Filter by flat area or price
+- Get information if the flat is sold or not
+- See detailed information about single flat
+- View the architecture of every floor
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## Administrator
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- Have access to the dashboard page
+- Full information about flats sold: demandable floor, money spent, how many flats are left.
+- Have access to sold flats
+- Have access to modify any flat: remove/add balconies, change flat area, price, and so on.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+To use the website as administrator please forward to [https://eliteresidence.vercel.app/dashboard](https://eliteresidence.vercel.app/dashboard).
+If you have no access to a username or password please contact me.
 
-To learn more about Next.js, take a look at the following resources:
+## Stack Used
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Frontend: Next.js
+Backend: Graphql/Prisma
+Styling: Tailwind.css
